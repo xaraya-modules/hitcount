@@ -14,9 +14,13 @@
  *
 **/
 sys::import('xaraya.structures.hooks.observer');
-class HitcountItemCreateObserver extends HookObserver implements ixarEventObserver
+class HitcountItemCreateObserver extends HookObserver implements ixarHookObserver
 {
     public $module = 'hitcount';
+
+     /**
+     * @param ixarHookSubject $subject
+     */
     public function notify(ixarEventSubject $subject)
     {
         // get extrainfo from subject (array containing module, module_id, itemtype, itemid)

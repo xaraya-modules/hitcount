@@ -18,9 +18,13 @@
  * This observer is responsible for logging the event to the system log
 **/
 sys::import('xaraya.structures.hooks.observer');
-class HitcountItemDisplayObserver extends EventObserver implements ixarEventObserver
+class HitcountItemDisplayObserver extends HookObserver
 {
     public $module = 'hitcount';
+
+    /**
+     * @param ixarHookSubject $subject
+     */
     public function notify(ixarEventSubject $subject)
     {
         // get extrainfo from subject (array containing module, module_id, itemtype, itemid)
