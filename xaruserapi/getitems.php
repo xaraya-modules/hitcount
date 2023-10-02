@@ -75,7 +75,7 @@ function hitcount_userapi_getitems($args)
 
     // Database information
     $dbconn = xarDB::getConn();
-    $xartable =& xarDB::getTables();
+    $xartable = & xarDB::getTables();
     $hitcounttable = $xartable['hitcount'];
 
     // Get items
@@ -87,7 +87,7 @@ function hitcount_userapi_getitems($args)
     $bindvars[] = (int) $modid;
     $bindvars[] = (int) $itemtype;
     if (count($itemids) > 0) {
-        $bindmarkers = '?' . str_repeat(',?', count($itemids)-1);
+        $bindmarkers = '?' . str_repeat(',?', count($itemids) - 1);
         $query .= " AND itemid IN ($bindmarkers)";
         foreach ($itemids as $itemid) {
             $bindvars[] = (int) $itemid;

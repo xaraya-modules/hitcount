@@ -80,7 +80,7 @@ function hitcount_adminapi_delete($args)
         }
 
         $dbconn = xarDB::getConn();
-        $xartable =& xarDB::getTables();
+        $xartable = & xarDB::getTables();
         $hitcounttable = $xartable['hitcount'];
 
         // Don't bother looking if the item exists here...
@@ -102,7 +102,7 @@ function hitcount_adminapi_delete($args)
         }
         return $extrainfo;
 
-    // if we're coming from the delete GUI (or elsewhere)
+        // if we're coming from the delete GUI (or elsewhere)
     } elseif (!empty($confirm)) {
         if (!xarSecurity::check('AdminHitcount')) {
             return;
@@ -110,7 +110,7 @@ function hitcount_adminapi_delete($args)
 
         // Database information
         $dbconn = xarDB::getConn();
-        $xartable =& xarDB::getTables();
+        $xartable = & xarDB::getTables();
         $hitcounttable = $xartable['hitcount'];
 
         $bindvars = [];

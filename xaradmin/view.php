@@ -65,11 +65,11 @@ function hitcount_admin_view()
                 $moditem['numhits'] = $stats['hits'];
                 if ($itemtype == 0) {
                     $moditem['name'] = ucwords($modinfo['displayname']);
-                //    $moditem['link'] = xarController::URL($modinfo['name'],'user','main');
+                    //    $moditem['link'] = xarController::URL($modinfo['name'],'user','main');
                 } else {
                     if (isset($mytypes) && !empty($mytypes[$itemtype])) {
                         $moditem['name'] = ucwords($modinfo['displayname']) . ' ' . $itemtype . ' - ' . $mytypes[$itemtype]['label'];
-                    //    $moditem['link'] = $mytypes[$itemtype]['url'];
+                        //    $moditem['link'] = $mytypes[$itemtype]['url'];
                     } else {
                         $moditem['name'] = ucwords($modinfo['displayname']) . ' ' . $itemtype;
                         //    $moditem['link'] = xarController::URL($modinfo['name'],'user','view',array('itemtype' => $itemtype));
@@ -115,7 +115,7 @@ function hitcount_admin_view()
             );
             if (isset($mytypes) && !empty($mytypes[$itemtype])) {
                 $data['modname'] = ucwords($modinfo['displayname']) . ' ' . $itemtype . ' - ' . $mytypes[$itemtype]['label'];
-            //    $data['modlink'] = $mytypes[$itemtype]['url'];
+                //    $data['modlink'] = $mytypes[$itemtype]['url'];
             } else {
                 $data['modname'] = ucwords($modinfo['displayname']) . ' ' . $itemtype;
                 //    $data['modlink'] = xarController::URL($modinfo['name'],'user','view',array('itemtype' => $itemtype));
@@ -204,15 +204,15 @@ function hitcount_admin_view()
                                           'itemtype' => $itemtype, ]
         );
         $data['sortlink'] = [];
-        if (empty($sortorder) || $sortorder=='ASC') {
+        if (empty($sortorder) || $sortorder == 'ASC') {
             $sortorder = 'DESC';
         } else {
             $sortorder = 'ASC';
         }
-//        if (empty($sort) || $sort == 'itemid') {
-//             $data['sortlink']['itemid'] = '';
-//
-//        } else {
+        //        if (empty($sort) || $sort == 'itemid') {
+        //             $data['sortlink']['itemid'] = '';
+        //
+        //        } else {
         $data['sortlink']['itemid'] = xarController::URL(
             'hitcount',
             'admin',
@@ -223,7 +223,7 @@ function hitcount_admin_view()
                                                            ]
         );
 
-//        }
+        //        }
         //       if (!empty($sort) && $sort == 'numhits') {
         //            $data['sortlink']['numhits'] = '';
         //       } else {
@@ -238,7 +238,7 @@ function hitcount_admin_view()
                                                             ]
         );
         //       }
- //       $data['sortorder'] = $sortorder;
+        //       $data['sortorder'] = $sortorder;
     }
 
     return $data;

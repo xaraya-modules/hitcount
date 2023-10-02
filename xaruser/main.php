@@ -50,7 +50,7 @@ function hitcount_user_main()
             $moduleList[$modinfo['displayname']]['modid'] = $modid;
         }
 
-        $mod =& $moduleList[$modinfo['displayname']];
+        $mod = & $moduleList[$modinfo['displayname']];
         $mod['numitems'] = 0;
         $mod['numhits']  = 0;
         $mod['tophits']  = [];

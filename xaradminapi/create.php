@@ -75,7 +75,7 @@ function hitcount_adminapi_create($args)
     }
 
     $dbconn = xarDB::getConn();
-    $xartable =& xarDB::getTables();
+    $xartable = & xarDB::getTables();
     $hitcounttable = $xartable['hitcount'];
 
     // Get a new hitcount ID

@@ -18,9 +18,9 @@ class HitcountItemCreateObserver extends HookObserver implements ixarHookObserve
 {
     public $module = 'hitcount';
 
-     /**
-     * @param ixarHookSubject $subject
-     */
+    /**
+    * @param ixarHookSubject $subject
+    */
     public function notify(ixarEventSubject $subject)
     {
         // get extrainfo from subject (array containing module, module_id, itemtype, itemid)

@@ -24,7 +24,7 @@ function hitcount_init()
 
     // Get database information
     $dbconn = xarDB::getConn();
-    $xartable =& xarDB::getTables();
+    $xartable = & xarDB::getTables();
 
     //Load Table Maintenance API
     sys::import('xaraya.tableddl');

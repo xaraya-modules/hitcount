@@ -101,7 +101,7 @@ class HitCountProperty extends NumberBoxProperty
             }
             return $this->hitcache;
 
-        // the dummy datastore will use the itemid as value for this property
+            // the dummy datastore will use the itemid as value for this property
         } elseif (!empty($this->_items) && isset($data['value']) && !empty($this->_items[$data['value']])) {
             if (!isset($this->hitcache)) {
                 // get the hitcount for all the items in the objectref
@@ -144,7 +144,7 @@ class HitCountProperty extends NumberBoxProperty
         if (!empty($preview)) {
             return false;
 
-        // if we don't count admin hits and the user is an admin, don't update
+            // if we don't count admin hits and the user is an admin, don't update
         } elseif (!xarModVars::get('hitcount', 'countadmin') && xarSecurity::check('AdminHitcount', 0)) {
             return false;
         } else {
@@ -152,7 +152,7 @@ class HitCountProperty extends NumberBoxProperty
         }
     }
 
-    public function createValue($itemid=0)
+    public function createValue($itemid = 0)
     {
         if (empty($itemid) || empty($this->objectref) || empty($this->objectref->objectid)) {
             return;
@@ -161,7 +161,7 @@ class HitCountProperty extends NumberBoxProperty
         return true;
     }
 
-    public function updateValue($itemid=0)
+    public function updateValue($itemid = 0)
     {
         if (empty($itemid) || empty($this->objectref) || empty($this->objectref->objectid)) {
             return;
@@ -170,7 +170,7 @@ class HitCountProperty extends NumberBoxProperty
         return true;
     }
 
-    public function deleteValue($itemid=0)
+    public function deleteValue($itemid = 0)
     {
         if (empty($itemid) || empty($this->objectref) || empty($this->objectref->objectid)) {
             return;

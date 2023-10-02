@@ -46,7 +46,7 @@ function hitcount_userapi_topitems($args)
 
     // Database information
     $dbconn = xarDB::getConn();
-    $xartable =& xarDB::getTables();
+    $xartable = & xarDB::getTables();
     $hitcounttable = $xartable['hitcount'];
 
     // Get items

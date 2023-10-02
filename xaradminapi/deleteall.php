@@ -55,7 +55,7 @@ function hitcount_adminapi_deleteall($args)
     }
 
     $dbconn = xarDB::getConn();
-    $xartable =& xarDB::getTables();
+    $xartable = & xarDB::getTables();
     $hitcounttable = $xartable['hitcount'];
 
     // FIXME: delete only for a particular module + itemtype (e.g. dd object, articles pubtype, ...)
