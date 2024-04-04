@@ -30,6 +30,7 @@ class HitcountItemDisplayObserver extends HookObserver
         // get extrainfo from subject (array containing module, module_id, itemtype, itemid)
         $extrainfo = $subject->getExtrainfo();
         extract($extrainfo);
+        $context = $subject->getContext();
 
         // validate parameters...
         // NOTE: this isn't strictly necessary, the hook subject will have already
@@ -61,7 +62,8 @@ class HitcountItemDisplayObserver extends HookObserver
                 'modname' => $module,
                 'itemtype' => !empty($itemtype) ? $itemtype : 0,
                 'objectid' => $itemid,
-            ]
+            ],
+            $context
         );
     }
 }

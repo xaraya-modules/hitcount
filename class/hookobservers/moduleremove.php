@@ -31,6 +31,7 @@ class HitcountModuleRemoveObserver extends HookObserver implements ixarHookObser
         // get args from subject (array containing objectid, extrainfo)
         $args = $subject->getArgs();
         extract($args);
+        //$context = $subject->getContext();
 
         // validate parameters...
         // NOTE: this isn't strictly necessary, the hook subject will have already

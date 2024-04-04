@@ -19,8 +19,7 @@
  *
  * @param $args['objectid'] ID of the item this hitcount is for
  * @param $args['extrainfo'] may contain itemtype
- * @returns output
- * @return output with hitcount information
+ * @return string output with hitcount information
  */
 function hitcount_user_display($args)
 {

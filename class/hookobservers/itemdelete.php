@@ -30,6 +30,7 @@ class HitcountItemDeleteObserver extends HookObserver implements ixarHookObserve
         // get extrainfo from subject (array containing module, module_id, itemtype, itemid)
         $extrainfo = $subject->getExtrainfo();
         extract($extrainfo);
+        //$context = $subject->getContext();
 
         // validate parameters...
         // NOTE: this isn't strictly necessary, the hook subject will have already
