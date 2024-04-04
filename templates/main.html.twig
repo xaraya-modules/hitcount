@@ -1,0 +1,44 @@
+{# @hitcount/main.html.twig #}
+
+{% extends '@hitcount/base.html.twig' %}
+
+{% block modulespace %}
+<div class="xar-mod-head">
+      <span class="xar-mod-title">
+        Hit Count
+      </span>
+    </div>
+    <div class="xar-mod-body">
+      <h2>Top Viewed Items</h2>
+      {% if not xar_security_check('AdminHitcount',0) %}
+        {% set isadmin = 0 %}
+      {% else %}
+        <strong>Note: as administrator, you may also see unapproved items here</strong>
+        {% set isadmin = 1 %}
+      {% endif %}
+      <ul>
+      {% for moditem in moditems %}
+        {#  
+          Note: if you still want to show modules without link information to everyone,
+                you should remove the following if condition
+         #}
+        {% if not moditem['toplinks'] and not isadmin %}
+          <xar:continue />
+        {% endif %}
+        <li> <a href="{{ moditem['link'] }}">{{ moditem['name'] }}</a> =&gt; {{ moditem['numitems'] }} items
+          <ul>
+            {% if moditem['toplinks'] %}
+              {% for toplink in moditem['toplinks'] %}
+                <li> <a href="{{ toplink['url'] }}" title="{{ toplink['title'] }}">{{ toplink['label'] }}</a> {{ toplink['hits'] }} hits </li>
+              {% endfor %}
+            {% else %}
+              {% for topitem in moditem['tophits'] %}
+                <li> item {{ topitem['itemid'] }} =&gt; {{ topitem['hits'] }} hits </li>
+              {% endfor %}
+            {% endif %}
+          </ul>
+        </li>
+      {% endfor %}
+      </ul>
+    </div>
+{% endblock %}

@@ -1,0 +1,61 @@
+{# @hitcount/admin/modifyconfig.html.twig #}
+
+{% block modifyconfig %}
+{{ include('@hitcount/includes/admin-mod-head.html.twig') }}
+    <div class="xar-mod-body">
+        <h2>Modify Configuration</h2>
+        {% if tab == 'general' %}
+            <form name="post" id="post" action="{{ xar_moduleurl('hitcount','admin','modifyconfig') }}" method="post" enctype="application/x-www-form-urlencoded">
+                <fieldset>
+                    <legend>
+                        General Options
+                    </legend>
+                    {{ xar_data_form({object: module_settings}) }}
+                </fieldset>
+                <fieldset>
+                    <legend>                    
+                        Modify Hitcount Configuration                    
+                    </legend>
+                    <div class="xar-form-input-wrapper">
+                        <label for="countadmin" class="xar-form-label">
+                            Count Administrator Hits
+                            :
+                        </label>
+                        {% if xar_modulevar('hitcount', 'countadmin') %}
+                            <input type="checkbox" name="countadmin" id="countadmin" value="1" checked="checked"/>
+                        {% else %}
+                            <input type="checkbox" name="countadmin" id="countadmin" value="1"/>
+                        {% endif %}
+                    </div>
+                    <div class="xar-form-input-wrapper">
+                        <label for="numitems" class="xar-form-label">
+                            Number of top items shown to users
+                            :
+                        </label>
+                        <input type="text" name="numitems" id="numitems" size="4" maxlength="4" value="{{ numitems }}"/>
+                    </div>&#160;
+                    <div class="xar-form-input-wrapper">
+                        <label for="numstats" class="xar-form-label">
+                            Number of items shown in statistics
+                            :
+                        </label>
+                        <input type="text" name="numstats" id="numstats" size="4" maxlength="4" value="{{ numstats }}"/>
+                    </div>&#160;
+                    <div class="xar-form-input-wrapper">
+                        <label for="showtitle" class="xar-form-label">
+                            Show the item title in statistics
+                            :
+                        </label>
+                        {% if showtitle %}
+                            <input type="checkbox" name="showtitle" id="showtitle" value="1" checked="checked"/>
+                        {% else %}
+                            <input type="checkbox" name="showtitle" id="showtitle" value="1"/>
+                        {% endif %}
+                    </div>
+                </fieldset>
+                <input type="hidden" name="tab" id="tab" value="{{ tab }}"/>
+                {{ include('@base/includes/update-button.html.twig') }}
+            </form>
+        {% endif %}
+    </div>
+{% endblock %}

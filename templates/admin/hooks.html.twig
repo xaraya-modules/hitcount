@@ -1,0 +1,14 @@
+{# @hitcount/admin/hooks.html.twig #}
+
+{% block hooks %}
+{{ include('@hitcount/includes/admin-mod-head.html.twig') }}
+    <div class="xar-mod-body">
+        <fieldset>
+            <legend>
+                Configure Hitcount Hooks
+            </legend>
+            {% set url = xar_moduleurl('hitcount','admin','hooks') %}
+            {{ xar_guifunc("modules", "admin", "hooks", {main: "false", curhook: "hitcount", return_url: url}) }}
+        </fieldset>
+    </div>
+{% endblock %}

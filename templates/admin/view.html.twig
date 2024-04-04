@@ -1,0 +1,157 @@
+{# @hitcount/admin/view.html.twig #}
+
+{% block view %}
+{# <!-- @todo: clean up the mixed use of inline styles and classes --> #}
+    {{ include('@hitcount/includes/admin-mod-head.html.twig') }}
+    <div class="xar-mod-body">
+        <h2>View Statistics</h2>
+        {% if not modid %}
+            <table class="xar-fullwidth">
+                <tr>
+                    <th>
+                        Module Name
+                    </th>
+                    <th>
+                        Module Items
+                    </th>
+                    <th>
+                        Total Hits
+                    </th>
+                    <th>
+                        Action
+                    </th>
+                </tr>
+                {% if not moditems or moditems|length == '0' %}
+                    <tr>
+                        <td colspan="4">
+
+                                There are currently no hit counts in the database...
+
+                        </td>
+                    </tr>
+                {% else %}
+                    {% for moditem in moditems %}
+                        <tr>
+                            <td class="xar-align-left">
+                                <a href="{{ moditem['link'] }}">{{ moditem['name'] }}</a>
+                            </td>
+                            <td class="xar-align-right">
+                                {{ moditem['numitems'] }}
+                            </td>
+                            <td class="xar-align-right">
+                                {{ moditem['numhits'] }}
+                            </td>
+                            <td class="xar-align-center">
+                                <a href="{{ moditem['delete'] }}"><b>Delete</b></a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="5">
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    <tr>
+                        <td class="xar-align-center">
+                            <b>Grand Total</b>
+                        </td>
+                        <td class="xar-align-right">
+                            <b>{{ numitems }}</b>
+                        </td>
+                        <td class="xar-align-right">
+                            <b>{{ numhits }}</b>
+                        </td>
+                        <td class="xar-align-center">
+                            <a href="{{ delete }}">Delete All</a>
+                        </td>
+                    </tr>
+                {% endif %}
+                <tr>
+                    <td colspan="4">
+                        <div class="xar-accent xar-norm-outline xar-padding-thick">
+
+                                By clicking on <b>Delete</b> you can delete all hit counts associated with a particular
+                                module. Clicking on a module will take you to that module's statistics page containing
+                                the figures for each of that module's items that have hit counts associated with them.
+                                From there you can delete all hit counts associated with a particular item.
+
+                        </div>
+                    </td>
+                </tr>
+            </table>
+    {% else %}
+            <h3>
+                {{ xar_translate('Module #(1)', modname) }}
+            </h3>
+            <table class="xar-fullwidth">
+                <tr>
+                    <th>
+                        <a href="{{ sortlink['itemid'] }}">Item Id</a>
+                    </th>
+                    <th>
+                        <a href="{{ sortlink['numhits'] }}">Total Hits</a>
+                    </th>
+                    <th>
+                        Action
+                    </th>
+                </tr>
+                {% if not moditems or moditems|length == '0' %}
+                    <tr>
+                        <td colspan="3" align="center">
+
+                                There are currently no hit counts attached to this module...
+
+                        </td>
+                    </tr>
+                {% else %}
+                    {% for itemid, moditem in moditems %}
+                        <tr>
+                            {% if moditem['title'] and moditem['link'] %}
+                                    <td class="xar-align-left">
+                                {{ itemid }}  <a href="{{ moditem['link'] }}">{{ moditem['title'] }} </a>
+                            </td>
+                            {% else %}
+                                    <td class="xar-align-right">
+                                {{ itemid }}
+                            </td>
+                            {% endif %}
+                                <td class="xar-align-right">
+                                {{ moditem['numhits'] }}
+                            </td>
+                                <td class="xar-align-center">
+                                <a href="{{ moditem['delete'] }}"><b>Delete</b></a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+               {% if total > itemsperpage %}
+                    <tr>
+                        <td colspan="3" align="center">
+                            {{ xar_pager({startnum: startnum, itemsperpage: itemsperpage, total: total, urltemplate: urltemplate}) }}
+                        </td>
+                    </tr>
+                {% endif %}
+                    <tr>
+                            <td class="xar-align-center">
+                            <b>Grand Total</b>:
+                        </td>
+                            <td class="xar-align-right">
+                            <b>{{ numhits }}</b>
+                        </td>
+                            <td class="xar-align-center">
+                            <a href="{{ delete }}">Delete All</a>
+                        </td>
+                    </tr>
+                {% endif %}
+                <tr>
+                    <td colspan="3">
+                            <div class="xar-accent xar-norm-outline xar-padding-thick">
+
+                                By clicking on <b>Delete</b> you can delete all hit counts associated with a particular
+                                module's item.
+
+                        </div>
+                    </td>
+                </tr>
+            </table>
+    {% endif %}
+    </div>
+{% endblock %}
