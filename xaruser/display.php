@@ -21,7 +21,7 @@
  * @param $args['extrainfo'] may contain itemtype
  * @return string output with hitcount information
  */
-function hitcount_user_display($args)
+function hitcount_user_display(array $args = [], $context = null)
 {
     extract($args);
 

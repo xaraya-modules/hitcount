@@ -15,10 +15,9 @@
  *
  * @param $args['objectid'] ID of the object (must be the module name here !!)
  * @param $args['extrainfo'] extra information
- * @return bool true on success, false on failure
- * @throws BAD_PARAM, NO_PERMISSION, DATABASE_ERROR
+ * @return bool|void true on success, false on failure
  */
-function hitcount_adminapi_deleteall($args)
+function hitcount_adminapi_deleteall(array $args = [], $context = null)
 {
     extract($args);
 
@@ -62,7 +61,7 @@ function hitcount_adminapi_deleteall($args)
 
     $query = "DELETE FROM $hitcounttable
             WHERE module_id = ?";
-    $result = $dbconn->Execute($query, [(int)$modid]);
+    $result = $dbconn->Execute($query, [(int) $modid]);
     if (!$result) {
         return;
     }

@@ -20,7 +20,7 @@
  * @param $args['startnum'] start at this number (1-based)
  * @return array Array('itemid' => $itemid, 'hits' => $hits)
  */
-function hitcount_userapi_topitems($args)
+function hitcount_userapi_topitems(array $args = [], $context = null)
 {
     // Get arguments from argument array
     extract($args);
@@ -55,7 +55,7 @@ function hitcount_userapi_topitems($args)
             WHERE module_id = ?
               AND itemtype = ?
             ORDER BY hits DESC";
-    $bindvars = [(int)$modid, (int)$itemtype];
+    $bindvars = [(int) $modid, (int) $itemtype];
 
     if (!isset($numitems) || !is_numeric($numitems)) {
         $numitems = 10;

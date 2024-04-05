@@ -19,10 +19,9 @@
  * @param $args['modname'] name of the calling module (not used in hook calls)
  * @param $args['itemtype'] optional item type for the item (not used in hook calls)
  * @param $args['hits'] optional hit count for the item (not used in hook calls)
- * @return int hitcount item ID on success, void on failure
- * @throws BAD_PARAM, NO_PERMISSION, DATABASE_ERROR
+ * @return int|void hitcount item ID on success, void on failure
  */
-function hitcount_adminapi_create($args)
+function hitcount_adminapi_create(array $args = [], $context = null)
 {
     extract($args);
 

@@ -17,7 +17,7 @@
  * @return array xarTpl::module with $data containing template data
  * @since 4 March 2006
  */
-function hitcount_admin_hooks()
+function hitcount_admin_hooks(array $args = [], $context = null)
 {
     /* Security Check */
     if (!xarSecurity::check('AdminHitcount', 0)) {

@@ -15,7 +15,7 @@
  *
  * @return array $array[$modid][$itemtype] = array('items' => $numitems,'hits' => $numhits);
  */
-function hitcount_userapi_getmodules($args)
+function hitcount_userapi_getmodules(array $args = [], $context = null)
 {
     // Security Check
     if (!xarSecurity::check('ViewHitcountItems')) {

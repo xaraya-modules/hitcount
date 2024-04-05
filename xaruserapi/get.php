@@ -18,7 +18,7 @@
  * @param $args['objectid'] ID of the item this hitcount is for
  * @return int The corresponding hit count, or void if no hit exists
  */
-function hitcount_userapi_get($args)
+function hitcount_userapi_get(array $args = [], $context = null)
 {
     // Get arguments from argument array
     extract($args);
@@ -81,7 +81,7 @@ function hitcount_userapi_get($args)
             WHERE module_id = ?
               AND itemtype = ?
               AND itemid = ?";
-    $bindvars = [(int)$modid, (int)$itemtype, (int)$objectid];
+    $bindvars = [(int) $modid, (int) $itemtype, (int) $objectid];
     $result = $dbconn->Execute($query, $bindvars);
     if (!$result || $result->EOF) {
         return;

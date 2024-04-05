@@ -21,10 +21,9 @@
  * @param $args['modid'] int module id
  * @param $args['itemtype'] int itemtype
  * @param $args['itemid'] int item id
- * @return bool true on success, false on failure
- * @throws BAD_PARAM, NO_PERMISSION, DATABASE_ERROR
+ * @return bool|void true on success, false on failure
  */
-function hitcount_adminapi_delete($args)
+function hitcount_adminapi_delete(array $args = [], $context = null)
 {
     extract($args);
 
@@ -88,7 +87,7 @@ function hitcount_adminapi_delete($args)
                 WHERE module_id = ?
                   AND itemtype = ?
                   AND itemid = ?";
-        $bindvars = [(int)$modid, (int)$itemtype, (int)$itemid];
+        $bindvars = [(int) $modid, (int) $itemtype, (int) $itemid];
         $result = $dbconn->Execute($query, $bindvars);
         if (!$result) {
             return;

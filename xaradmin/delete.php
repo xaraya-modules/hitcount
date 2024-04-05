@@ -17,9 +17,9 @@
  * @param int itemtype
  * @param int itemid
  * @param str confirm When empty the confirmation page is shown
- * @return bool True on success of deletion
+ * @return bool|string|void True on success of deletion
  */
-function hitcount_admin_delete()
+function hitcount_admin_delete(array $args = [], $context = null)
 {
     // Security Check
     if (!xarSecurity::check('AdminHitcount')) {
@@ -53,14 +53,11 @@ function hitcount_admin_delete()
                 $data['modname'] = ucwords($modinfo['displayname']);
             } else {
                 // Get the list of all item types for this module (if any)
-                $mytypes = xarMod::apiFunc(
-                    $modinfo['name'],
-                    'user',
-                    'getitemtypes',
-                    // don't throw an exception if this function doesn't exist
-                    [],
-                    0
-                );
+                try {
+                    $mytypes = xarMod::apiFunc($modinfo['name'], 'user', 'getitemtypes');
+                } catch (Exception $e) {
+                    $mytypes = [];
+                }
                 if (isset($mytypes) && !empty($mytypes[$itemtype])) {
                     $data['modname'] = ucwords($modinfo['displayname']) . ' ' . $itemtype . ' - ' . $mytypes[$itemtype]['label'];
                 } else {
@@ -75,19 +72,19 @@ function hitcount_admin_delete()
     }
 
     if (!xarSec::confirmAuthKey()) {
-        return xarTpl::module('privileges', 'user', 'errors', ['layout' => 'bad_author']);
+        return xarController::badRequest('bad_author', $context);
     }
     if (!xarMod::apiFunc(
         'hitcount',
         'admin',
         'delete',
         ['modid' => $modid,
-                             'itemtype' => $itemtype,
-                             'itemid' => $itemid,
-                             'confirm' => $confirm, ]
+        'itemtype' => $itemtype,
+        'itemid' => $itemid,
+        'confirm' => $confirm, ]
     )) {
         return;
     }
-    xarController::redirect(xarController::URL('hitcount', 'admin', 'view'));
+    xarController::redirect(xarController::URL('hitcount', 'admin', 'view'), null, $context);
     return true;
 }

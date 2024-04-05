@@ -14,7 +14,7 @@
  * Add a standard screen upon entry to the module.
  * @return bool true on success of redirect
  */
-function hitcount_admin_main()
+function hitcount_admin_main(array $args = [], $context = null)
 {
     if (!xarSecurity::check('ManageHitcount')) {
         return;
@@ -23,7 +23,7 @@ function hitcount_admin_main()
     if (xarModVars::get('modules', 'disableoverview') == 0) {
         return [];
     } else {
-        xarController::redirect(xarController::URL('hitcount', 'admin', 'view'));
+        xarController::redirect(xarController::URL('hitcount', 'admin', 'view'), null, $context);
     }
     return true;
 }

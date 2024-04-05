@@ -18,10 +18,9 @@
  * @param $args['objectid'] ID of the object
  * @param $args['extrainfo'] may contain itemtype
  * @param $args['hits'] (optional) hit count for the item
- * @return int The new hitcount for this item, or void on failure
- * @throws BAD_PARAM, NO_PERMISSION, DATABASE_ERROR
+ * @return int|void The new hitcount for this item, or void on failure
  */
-function hitcount_adminapi_update($args)
+function hitcount_adminapi_update(array $args = [], $context = null)
 {
     extract($args);
 
@@ -119,7 +118,7 @@ function hitcount_adminapi_update($args)
               " WHERE module_id = ?
               AND itemtype = ?
               AND itemid = ?";
-    $bindvars = [(int)$modid, (int)$itemtype, (int)$objectid];
+    $bindvars = [(int) $modid, (int) $itemtype, (int) $objectid];
     $result = $dbconn->Execute($query, $bindvars);
     if (!$result) {
         return;

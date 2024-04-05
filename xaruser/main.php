@@ -14,7 +14,7 @@
 /**
  * the main user function (nothing interesting here - might be removed)
  */
-function hitcount_user_main()
+function hitcount_user_main(array $args = [], $context = null)
 {
     // Security Check
     if (!xarSecurity::check('ViewHitcountItems')) {
@@ -38,14 +38,11 @@ function hitcount_user_main()
     foreach ($modlist as $modid => $itemtypes) {
         $modinfo = xarMod::getInfo($modid);
         // Get the list of all item types for this module (if any)
-        $mytypes = xarMod::apiFunc(
-            $modinfo['name'],
-            'user',
-            'getitemtypes',
-            // don't throw an exception if this function doesn't exist
-            [],
-            0
-        );
+        try {
+            $mytypes = xarMod::apiFunc($modinfo['name'], 'user', 'getitemtypes');
+        } catch (Exception $e) {
+            $mytypes = [];
+        }
         if (!isset($moduleList[$modinfo['displayname']]['modid'])) {
             $moduleList[$modinfo['displayname']]['modid'] = $modid;
         }
@@ -95,14 +92,17 @@ function hitcount_user_main()
                     $itemid2hits[$tophit['itemid']] = $tophit['hits'];
                 }
 
-                $moditem['toplinks'] = xarMod::apiFunc(
-                    $modinfo['name'],
-                    'user',
-                    'getitemlinks',
-                    ['itemtype' => $itemtype,
-                                                           'itemids' => $itemids, ],
-                    0
-                ); // don't throw an exception here
+                try {
+                    $moditem['toplinks'] = xarMod::apiFunc(
+                        $modinfo['name'],
+                        'user',
+                        'getitemlinks',
+                        ['itemtype' => $itemtype,
+                        'itemids' => $itemids]
+                    );
+                } catch (Exception $e) {
+                    $moditem['toplinks'] = [];
+                }
                 if (!empty($moditem['toplinks'])) {
                     foreach ($moditem['toplinks'] as $itemid => $toplink) {
                         if (!isset($itemid2hits[$itemid])) {

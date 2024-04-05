@@ -23,7 +23,7 @@
  * @param $args['startnum'] start at this number (1-based)
  * @return array $array[$itemid] = $hits;
  */
-function hitcount_userapi_getitems($args)
+function hitcount_userapi_getitems(array $args = [], $context = null)
 {
     // Get arguments from argument array
     extract($args);

@@ -33,7 +33,7 @@
  *               ...
  *               'hits'  => '_hitcount.hits')
  */
-function hitcount_userapi_leftjoin($args)
+function hitcount_userapi_leftjoin(array $args = [], $context = null)
 {
     // Get arguments from argument array
     extract($args);

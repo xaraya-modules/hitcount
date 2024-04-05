@@ -13,9 +13,9 @@
 /**
  * modify configuration
  * @param string phase
- * @return array
+ * @return array|string|void
  */
-function hitcount_admin_modifyconfig()
+function hitcount_admin_modifyconfig(array $args = [], $context = null)
 {
     // Security Check
     if (!xarSecurity::check('AdminHitcount')) {
@@ -64,7 +64,7 @@ function hitcount_admin_modifyconfig()
         case 'update':
             // Confirm authorisation code
             if (!xarSec::confirmAuthKey()) {
-                return xarTpl::module('privileges', 'user', 'errors', ['layout' => 'bad_author']);
+                return xarController::badRequest('bad_author', $context);
             }
             switch ($data['tab']) {
                 case 'general':
@@ -93,7 +93,7 @@ function hitcount_admin_modifyconfig()
                     xarModVars::set('hitcount', 'numitems', $numitems);
                     xarModVars::set('hitcount', 'numstats', $numstats);
                     xarModVars::set('hitcount', 'showtitle', $showtitle);
-                    xarController::redirect(xarController::URL('hitcount', 'admin', 'modifyconfig'));
+                    xarController::redirect(xarController::URL('hitcount', 'admin', 'modifyconfig'), null, $context);
                     // Return
                     return true;
                     break;
