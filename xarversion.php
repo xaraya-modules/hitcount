@@ -28,9 +28,11 @@ $modversion['admin'] = true;
 $modversion['user'] = true;
 $modversion['class'] = 'Complete';
 $modversion['category'] = 'Utility';
+//$modversion['namespace']      = 'Xaraya\Modules\Hitcount';
+$modversion['twigtemplates']  = true;
 $modversion['dependencyinfo'] = [
-                                    0 => [
-                                            'name' => 'Xaraya Core',
-                                            'version_ge' => '2.2.0',
-                                         ],
-                                      ];
+    0 => [
+        'name' => 'Xaraya Core',
+        'version_ge' => '2.4.1',
+    ],
+];
