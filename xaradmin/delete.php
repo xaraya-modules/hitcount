@@ -13,10 +13,12 @@
 
 /**
  * Delete hit counts of module items
- * @param int modid
- * @param int itemtype
- * @param int itemid
- * @param str confirm When empty the confirmation page is shown
+ * @param array $args
+ * with
+ *     int modid
+ *     int itemtype
+ *     int itemid
+ *     str confirm When empty the confirmation page is shown
  * @return bool|string|void True on success of deletion
  */
 function hitcount_admin_delete(array $args = [], $context = null)

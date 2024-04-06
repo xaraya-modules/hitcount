@@ -17,7 +17,7 @@
  * The template contains overview and help texts
  *
  * @author the Hitcount module development team
- * @return array xarTpl::module with $data containing template data
+ * @return array|string|void xarTpl::module with $data containing template data
  * @since 4 March 2006
  */
 function hitcount_admin_overview(array $args = [], $context = null)
@@ -33,5 +33,6 @@ function hitcount_admin_overview(array $args = [], $context = null)
      * else just call the main function that displays the overview
      */
 
-    return xarTpl::module('hitcount', 'admin', 'main', $data, 'main');
+     $data['context'] = $context;
+     return xarTpl::module('hitcount', 'admin', 'main', $data, 'main');
 }

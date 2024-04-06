@@ -12,7 +12,7 @@
  */
 /**
  * Add a standard screen upon entry to the module.
- * @return bool true on success of redirect
+ * @return bool|array|void true on success of redirect
  */
 function hitcount_admin_main(array $args = [], $context = null)
 {

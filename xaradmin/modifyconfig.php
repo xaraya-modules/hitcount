@@ -83,6 +83,7 @@ function hitcount_admin_modifyconfig(array $args = [], $context = null)
 
                     $isvalid = $data['module_settings']->checkInput();
                     if (!$isvalid) {
+                        $data['context'] ??= $context;
                         return xarTpl::module('eventhub', 'admin', 'modifyconfig', $data);
                     } else {
                         $itemid = $data['module_settings']->updateItem();
@@ -96,7 +97,6 @@ function hitcount_admin_modifyconfig(array $args = [], $context = null)
                     xarController::redirect(xarController::URL('hitcount', 'admin', 'modifyconfig'), null, $context);
                     // Return
                     return true;
-                    break;
                 case 'tab2':
                     break;
                 case 'tab3':
