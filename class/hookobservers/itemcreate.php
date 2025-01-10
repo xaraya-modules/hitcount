@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Hitcount Module
  *
