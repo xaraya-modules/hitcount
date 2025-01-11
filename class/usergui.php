@@ -19,6 +19,9 @@ sys::import('modules.hitcount.class.userapi');
 
 /**
  * Handle the hitcount user GUI
+ *
+ * @method mixed display(array $args)
+ * @method mixed main(array $args)
  * @extends UserGuiClass<Module>
  */
 class UserGui extends UserGuiClass

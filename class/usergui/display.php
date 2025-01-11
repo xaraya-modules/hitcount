@@ -11,6 +11,8 @@
 
 namespace Xaraya\Modules\Hitcount\UserGui;
 
+
+use Xaraya\Modules\Hitcount\UserGui;
 use Xaraya\Modules\MethodClass;
 use xarVar;
 use xarMod;
@@ -23,6 +25,7 @@ sys::import('xaraya.modules.method');
 
 /**
  * hitcount user display function
+ * @extends MethodClass<UserGui>
  */
 class DisplayMethod extends MethodClass
 {

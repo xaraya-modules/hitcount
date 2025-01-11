@@ -11,6 +11,8 @@
 
 namespace Xaraya\Modules\Hitcount\UserApi;
 
+
+use Xaraya\Modules\Hitcount\UserApi;
 use Xaraya\Modules\MethodClass;
 use xarSession;
 use xarMod;
@@ -23,6 +25,7 @@ sys::import('xaraya.modules.method');
 
 /**
  * hitcount userapi topitems function
+ * @extends MethodClass<UserApi>
  */
 class TopitemsMethod extends MethodClass
 {

@@ -18,6 +18,12 @@ sys::import('xaraya.modules.userapi');
 
 /**
  * Handle the hitcount user API
+ *
+ * @method mixed get(array $args)
+ * @method mixed getitems(array $args)
+ * @method mixed getmodules(array $args)
+ * @method mixed leftjoin(array $args)
+ * @method mixed topitems(array $args)
  * @extends UserApiClass<Module>
  */
 class UserApi extends UserApiClass

@@ -11,6 +11,8 @@
 
 namespace Xaraya\Modules\Hitcount\UserApi;
 
+
+use Xaraya\Modules\Hitcount\UserApi;
 use Xaraya\Modules\MethodClass;
 use xarMod;
 use xarSecurity;
@@ -22,6 +24,7 @@ sys::import('xaraya.modules.method');
 
 /**
  * hitcount userapi get function
+ * @extends MethodClass<UserApi>
  */
 class GetMethod extends MethodClass
 {

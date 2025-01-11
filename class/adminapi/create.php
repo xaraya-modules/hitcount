@@ -11,6 +11,8 @@
 
 namespace Xaraya\Modules\Hitcount\AdminApi;
 
+
+use Xaraya\Modules\Hitcount\AdminApi;
 use Xaraya\Modules\MethodClass;
 use xarMod;
 use xarSecurity;
@@ -23,6 +25,7 @@ sys::import('xaraya.modules.method');
 
 /**
  * hitcount adminapi create function
+ * @extends MethodClass<AdminApi>
  */
 class CreateMethod extends MethodClass
 {

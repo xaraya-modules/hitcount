@@ -11,6 +11,8 @@
 
 namespace Xaraya\Modules\Hitcount\UserGui;
 
+
+use Xaraya\Modules\Hitcount\UserGui;
 use Xaraya\Modules\MethodClass;
 use xarSecurity;
 use xarMod;
@@ -25,6 +27,7 @@ sys::import('xaraya.modules.method');
 
 /**
  * hitcount user main function
+ * @extends MethodClass<UserGui>
  */
 class MainMethod extends MethodClass
 {

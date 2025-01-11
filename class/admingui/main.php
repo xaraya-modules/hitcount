@@ -11,6 +11,8 @@
 
 namespace Xaraya\Modules\Hitcount\AdminGui;
 
+
+use Xaraya\Modules\Hitcount\AdminGui;
 use Xaraya\Modules\MethodClass;
 use xarSecurity;
 use xarModVars;
@@ -22,6 +24,7 @@ sys::import('xaraya.modules.method');
 
 /**
  * hitcount admin main function
+ * @extends MethodClass<AdminGui>
  */
 class MainMethod extends MethodClass
 {

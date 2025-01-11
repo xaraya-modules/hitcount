@@ -18,6 +18,11 @@ sys::import('xaraya.modules.adminapi');
 
 /**
  * Handle the hitcount admin API
+ *
+ * @method mixed create(array $args)
+ * @method mixed delete(array $args)
+ * @method mixed deleteall(array $args)
+ * @method mixed update(array $args)
  * @extends AdminApiClass<Module>
  */
 class AdminApi extends AdminApiClass

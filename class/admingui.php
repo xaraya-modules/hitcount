@@ -19,6 +19,13 @@ sys::import('modules.hitcount.class.adminapi');
 
 /**
  * Handle the hitcount admin GUI
+ *
+ * @method mixed delete(array $args)
+ * @method mixed hooks(array $args)
+ * @method mixed main(array $args)
+ * @method mixed modifyconfig(array $args)
+ * @method mixed overview(array $args)
+ * @method mixed view(array $args)
  * @extends AdminGuiClass<Module>
  */
 class AdminGui extends AdminGuiClass
