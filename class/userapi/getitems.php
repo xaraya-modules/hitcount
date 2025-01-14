@@ -33,15 +33,16 @@ class GetitemsMethod extends MethodClass
 
     /**
      * get a hitcount for a list of items
-     * @param mixed $args ['modname'] name of the module you want items from, or
-     * @param mixed $args ['modid'] module id you want items from
-     * @param mixed $args ['itemtype'] item type of the items (only 1 type supported per call)
-     * @param mixed $args ['itemids'] array of item IDs
-     * @param mixed $args ['sort'] string sort by itemid (default) or numhits
-     * @param mixed $args ['sortorder'] string sort order DESC (default) or ASC
-     * @param mixed $args ['numitems'] number of items to return
-     * @param mixed $args ['startnum'] start at this number (1-based)
-     * @return array $array[$itemid] = $hits;
+     * @param array<mixed> $args
+     * @var mixed $modname name of the module you want items from, or
+     * @var mixed $modid module id you want items from
+     * @var mixed $itemtype item type of the items (only 1 type supported per call)
+     * @var mixed $itemids array of item IDs
+     * @var mixed $sort string sort by itemid (default) or numhits
+     * @var mixed $sortorder string sort order DESC (default) or ASC
+     * @var mixed $numitems number of items to return
+     * @var mixed $startnum start at this number (1-based)
+     * @return array|void $array[$itemid] = $hits;
      */
     public function __invoke(array $args = [])
     {

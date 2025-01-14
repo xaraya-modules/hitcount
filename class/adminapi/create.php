@@ -33,11 +33,12 @@ class CreateMethod extends MethodClass
 
     /**
      * create a new hitcount item - hook for ('item','create','API')
-     * @param mixed $args ['objectid'] ID of the object
-     * @param mixed $args ['extrainfo'] extra information
-     * @param mixed $args ['modname'] name of the calling module (not used in hook calls)
-     * @param mixed $args ['itemtype'] optional item type for the item (not used in hook calls)
-     * @param mixed $args ['hits'] optional hit count for the item (not used in hook calls)
+     * @param array<mixed> $args
+     * @var mixed $objectid ID of the object
+     * @var mixed $extrainfo extra information
+     * @var mixed $modname name of the calling module (not used in hook calls)
+     * @var mixed $itemtype optional item type for the item (not used in hook calls)
+     * @var mixed $hits optional hit count for the item (not used in hook calls)
      * @return int|void hitcount item ID on success, void on failure
      */
     public function __invoke(array $args = [])
@@ -45,7 +46,7 @@ class CreateMethod extends MethodClass
         extract($args);
 
         if (!isset($objectid) || !is_numeric($objectid)) {
-            $msg = xarML(
+            $msg = $this->translate(
                 'Invalid #(1) for #(2) function #(3)() in module #(4)',
                 'object ID',
                 'admin',
@@ -67,7 +68,7 @@ class CreateMethod extends MethodClass
         }
         $modid = xarMod::getRegId($modname);
         if (empty($modid)) {
-            $msg = xarML(
+            $msg = $this->translate(
                 'Invalid #(1) for #(2) function #(3)() in module #(4)',
                 'module name',
                 'admin',

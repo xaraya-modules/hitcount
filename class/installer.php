@@ -65,7 +65,7 @@ class Installer extends InstallerClass
     public function init()
     {
         // Set ModVar
-        xarModVars::set('hitcount', 'countadmin', 0);
+        $this->setModVar('countadmin', 0);
 
         // Get database information
         $dbconn = xarDB::getConn();

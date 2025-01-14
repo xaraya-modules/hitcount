@@ -39,7 +39,7 @@ class MainMethod extends MethodClass
     public function __invoke(array $args = [])
     {
         // Security Check
-        if (!xarSecurity::check('ViewHitcountItems')) {
+        if (!$this->checkAccess('ViewHitcountItems')) {
             return;
         }
 
@@ -48,11 +48,11 @@ class MainMethod extends MethodClass
             return;
         }
 
-        $data['title'] = xarML('Modules we are currently counting display hits for : (test)');
+        $data['title'] = $this->translate('Modules we are currently counting display hits for : (test)');
         $data['moditems'] = [];
         $moduleList = [];
 
-        $numitems = xarModVars::get('hitcount', 'numitems');
+        $numitems = $this->getModVar('numitems');
         if (empty($numitems)) {
             $numitems = 10;
         }
@@ -160,7 +160,7 @@ class MainMethod extends MethodClass
 
         $data['moduleList'] = $moduleList;
 
-        xarTpl::setPageTitle(xarVar::prepForDisplay(xarML('Top Items')));
+        xarTpl::setPageTitle(xarVar::prepForDisplay($this->translate('Top Items')));
 
         // Return output
         return $data;

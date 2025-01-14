@@ -42,14 +42,14 @@ class ModifyconfigMethod extends MethodClass
     public function __invoke(array $args = [])
     {
         // Security Check
-        if (!xarSecurity::check('AdminHitcount')) {
+        if (!$this->checkAccess('AdminHitcount')) {
             return;
         }
 
-        if (!xarVar::fetch('phase', 'str:1:100', $phase, 'modify', xarVar::NOT_REQUIRED)) {
+        if (!$this->fetch('phase', 'str:1:100', $phase, 'modify', xarVar::NOT_REQUIRED)) {
             return;
         }
-        if (!xarVar::fetch('tab', 'str:1:100', $data['tab'], 'general', xarVar::NOT_REQUIRED)) {
+        if (!$this->fetch('tab', 'str:1:100', $data['tab'], 'general', xarVar::NOT_REQUIRED)) {
             return;
         }
 
@@ -63,16 +63,16 @@ class ModifyconfigMethod extends MethodClass
                 switch ($data['tab']) {
                     case 'general':
                         // Quick Data Array
-                        $data['authid'] = xarSec::genAuthKey();
-                        $data['numitems'] = xarModVars::get('hitcount', 'numitems');
+                        $data['authid'] = $this->genAuthKey();
+                        $data['numitems'] = $this->getModVar('numitems');
                         if (empty($data['numitems'])) {
                             $data['numitems'] = 10;
                         }
-                        $data['numstats'] = xarModVars::get('hitcount', 'numstats');
+                        $data['numstats'] = $this->getModVar('numstats');
                         if (empty($data['numstats'])) {
                             $data['numstats'] = 100;
                         }
-                        $data['showtitle'] = xarModVars::get('hitcount', 'showtitle');
+                        $data['showtitle'] = $this->getModVar('showtitle');
                         if (!empty($data['showtitle'])) {
                             $data['showtitle'] = 1;
                         }
@@ -87,21 +87,21 @@ class ModifyconfigMethod extends MethodClass
                 break;
             case 'update':
                 // Confirm authorisation code
-                if (!xarSec::confirmAuthKey()) {
+                if (!$this->confirmAuthKey()) {
                     return xarController::badRequest('bad_author', $this->getContext());
                 }
                 switch ($data['tab']) {
                     case 'general':
-                        if (!xarVar::fetch('countadmin', 'checkbox', $countadmin, false, xarVar::NOT_REQUIRED)) {
+                        if (!$this->fetch('countadmin', 'checkbox', $countadmin, false, xarVar::NOT_REQUIRED)) {
                             return;
                         }
-                        if (!xarVar::fetch('numitems', 'int', $numitems, 10, xarVar::NOT_REQUIRED)) {
+                        if (!$this->fetch('numitems', 'int', $numitems, 10, xarVar::NOT_REQUIRED)) {
                             return;
                         }
-                        if (!xarVar::fetch('numstats', 'int', $numstats, 100, xarVar::NOT_REQUIRED)) {
+                        if (!$this->fetch('numstats', 'int', $numstats, 100, xarVar::NOT_REQUIRED)) {
                             return;
                         }
-                        if (!xarVar::fetch('showtitle', 'checkbox', $showtitle, false, xarVar::NOT_REQUIRED)) {
+                        if (!$this->fetch('showtitle', 'checkbox', $showtitle, false, xarVar::NOT_REQUIRED)) {
                             return;
                         }
 
@@ -114,11 +114,11 @@ class ModifyconfigMethod extends MethodClass
                         }
 
                         // Update module variables
-                        xarModVars::set('hitcount', 'countadmin', $countadmin);
-                        xarModVars::set('hitcount', 'numitems', $numitems);
-                        xarModVars::set('hitcount', 'numstats', $numstats);
-                        xarModVars::set('hitcount', 'showtitle', $showtitle);
-                        xarController::redirect(xarController::URL('hitcount', 'admin', 'modifyconfig'), null, $this->getContext());
+                        $this->setModVar('countadmin', $countadmin);
+                        $this->setModVar('numitems', $numitems);
+                        $this->setModVar('numstats', $numstats);
+                        $this->setModVar('showtitle', $showtitle);
+                        $this->redirect($this->getUrl('admin', 'modifyconfig'));
                         // Return
                         return true;
                     case 'tab2':

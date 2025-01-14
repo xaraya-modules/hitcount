@@ -35,9 +35,10 @@ class DisplayMethod extends MethodClass
      * add a hit for a specific item, and display the hitcount (= display hook)
      * (use xarVar::setCached('Hooks.hitcount','save', 1) to tell hitcount *not*
      * to display the hit count, but to save it in 'Hooks.hitcount', 'value')
-     * @param mixed $args ['objectid'] ID of the item this hitcount is for
-     * @param mixed $args ['extrainfo'] may contain itemtype
-     * @return string output with hitcount information
+     * @param array<mixed> $args
+     * @var mixed $objectid ID of the item this hitcount is for
+     * @var mixed $extrainfo may contain itemtype
+     * @return string|void output with hitcount information
      */
     public function __invoke(array $args = [])
     {
@@ -67,7 +68,7 @@ class DisplayMethod extends MethodClass
             }
         }
         if (xarVar::isCached('Hooks.hitcount', 'nocount') ||
-            (xarSecurity::check('AdminHitcount', 0) && xarModVars::get('hitcount', 'countadmin') == false)) {
+            ($this->checkAccess('AdminHitcount', 0) && $this->getModVar('countadmin') == false)) {
             $hitcount = xarMod::apiFunc('hitcount', 'user', 'get', $args);
         } else {
             $hitcount = xarMod::apiFunc('hitcount', 'admin', 'update', $args);
@@ -78,7 +79,7 @@ class DisplayMethod extends MethodClass
             // Display current hitcount or set the cached variable
             if (!xarVar::isCached('Hooks.hitcount', 'save') ||
                 xarVar::getCached('Hooks.hitcount', 'save') == false) {
-                return '(' . $hitcount . ' ' . xarML('Reads') . ')';
+                return '(' . $hitcount . ' ' . $this->translate('Reads') . ')';
             } else {
                 xarVar::setCached('Hooks.hitcount', 'value', $hitcount);
             }

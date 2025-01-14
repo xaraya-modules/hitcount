@@ -32,13 +32,14 @@ class DeleteMethod extends MethodClass
 
     /**
      * delete a hitcount item - hook for ('item','delete','API')
-     * @param mixed $args ['objectid'] ID of the object
-     * @param mixed $args ['extrainfo'] extra information
-     * @param mixed $args ['modname'] name of the calling module (not used in hook calls)
-     * @param mixed $args ['itemtype'] optional item type for the item (not used in hook calls)
-     * @param mixed $args ['modid'] int module id
-     * @param mixed $args ['itemtype'] int itemtype
-     * @param mixed $args ['itemid'] int item id
+     * @param array<mixed> $args
+     * @var mixed $objectid ID of the object
+     * @var mixed $extrainfo extra information
+     * @var mixed $modname name of the calling module (not used in hook calls)
+     * @var mixed $itemtype optional item type for the item (not used in hook calls)
+     * @var mixed $modid int module id
+     * @var mixed $itemtype int itemtype
+     * @var mixed $itemid int item id
      * @return bool|void true on success, false on failure
      */
     public function __invoke(array $args = [])
@@ -48,7 +49,7 @@ class DeleteMethod extends MethodClass
         // if we're coming via a hook call
         if (isset($objectid)) {
             if (!is_numeric($objectid)) {
-                $msg = xarML(
+                $msg = $this->translate(
                     'Invalid #(1) for #(2) function #(3)() in module #(4)',
                     'object ID',
                     'admin',
@@ -71,7 +72,7 @@ class DeleteMethod extends MethodClass
             }
             $modid = xarMod::getRegId($modname);
             if (empty($modid)) {
-                $msg = xarML(
+                $msg = $this->translate(
                     'Invalid #(1) for #(2) function #(3)() in module #(4)',
                     'module name',
                     'admin',
@@ -121,7 +122,7 @@ class DeleteMethod extends MethodClass
 
             // if we're coming from the delete GUI (or elsewhere)
         } elseif (!empty($confirm)) {
-            if (!xarSecurity::check('AdminHitcount')) {
+            if (!$this->checkAccess('AdminHitcount')) {
                 return;
             }
 
@@ -134,7 +135,7 @@ class DeleteMethod extends MethodClass
             $query = "DELETE FROM $hitcounttable ";
             if (!empty($modid)) {
                 if (!is_numeric($modid)) {
-                    $msg = xarML(
+                    $msg = $this->translate(
                         'Invalid #(1) for #(2) function #(3)() in module #(4)',
                         'module id',
                         'admin',

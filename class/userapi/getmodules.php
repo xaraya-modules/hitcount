@@ -36,7 +36,7 @@ class GetmodulesMethod extends MethodClass
     public function __invoke(array $args = [])
     {
         // Security Check
-        if (!xarSecurity::check('ViewHitcountItems')) {
+        if (!$this->checkAccess('ViewHitcountItems')) {
             return;
         }
 

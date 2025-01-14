@@ -39,11 +39,12 @@ class LeftjoinMethod extends MethodClass
      *           WHERE ...
      *               AND $hits > 1000
      *               AND $where
-     * @param mixed $args ['modname'] name of the module you want items from, or
-     * @param mixed $args ['modid'] ID of the module you want items from
-     * @param mixed $args ['itemtype'] item type (optional) or array of itemtypes
-     * @param mixed $args ['itemids'] optional array of itemids that we are selecting on
-     * @return array array('table' => '_hitcount',
+     * @param array<mixed> $args
+     * @var mixed $modname name of the module you want items from, or
+     * @var mixed $modid ID of the module you want items from
+     * @var mixed $itemtype item type (optional) or array of itemtypes
+     * @var mixed $itemids optional array of itemids that we are selecting on
+     * @return array|void array('table' => '_hitcount',
      * 'field' => '_hitcount.itemid',
      * 'where' => '_hitcount.itemid IN (...)
      *             AND _hitcount.module_id = 123',

@@ -33,11 +33,12 @@ class TopitemsMethod extends MethodClass
 
     /**
      * get the list of items with top N hits for a module
-     * @param mixed $args ['modname'] name of the module you want items from
-     * @param mixed $args ['itemtype'] item type of the items (only 1 type supported per call)
-     * @param mixed $args ['numitems'] number of items to return
-     * @param mixed $args ['startnum'] start at this number (1-based)
-     * @return array Array('itemid' => $itemid, 'hits' => $hits)
+     * @param array<mixed> $args
+     * @var mixed $modname name of the module you want items from
+     * @var mixed $itemtype item type of the items (only 1 type supported per call)
+     * @var mixed $numitems number of items to return
+     * @var mixed $startnum start at this number (1-based)
+     * @return array|void Array('itemid' => $itemid, 'hits' => $hits)
      */
     public function __invoke(array $args = [])
     {

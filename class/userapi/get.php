@@ -32,10 +32,11 @@ class GetMethod extends MethodClass
 
     /**
      * get a hitcount for a specific item
-     * @param mixed $args ['modname'] name of the module this hitcount is for
-     * @param mixed $args ['itemtype'] item type of the item this hitcount is for
-     * @param mixed $args ['objectid'] ID of the item this hitcount is for
-     * @return int The corresponding hit count, or void if no hit exists
+     * @param array<mixed> $args
+     * @var mixed $modname name of the module this hitcount is for
+     * @var mixed $itemtype item type of the item this hitcount is for
+     * @var mixed $objectid ID of the item this hitcount is for
+     * @return int|void The corresponding hit count, or void if no hit exists
      */
     public function __invoke(array $args = [])
     {
@@ -43,7 +44,7 @@ class GetMethod extends MethodClass
         extract($args);
 
         if (!isset($objectid) || !is_numeric($objectid)) {
-            $msg = xarML(
+            $msg = $this->translate(
                 'Invalid #(1) for #(2) function #(3)() in module #(4)',
                 'object ID',
                 'user',
@@ -65,7 +66,7 @@ class GetMethod extends MethodClass
         }
         $modid = xarMod::getRegId($modname);
         if (empty($modid)) {
-            $msg = xarML(
+            $msg = $this->translate(
                 'Invalid #(1) for #(2) function #(3)() in module #(4)',
                 'module name',
                 'user',

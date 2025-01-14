@@ -32,11 +32,12 @@ class UpdateMethod extends MethodClass
 
     /**
      * update a hitcount item - used by display hook hitcount_user_display
-     * @param mixed $args ['modname'] name of the calling module (see _user_display)
-     * @param mixed $args ['itemtype'] optional item type for the item (or in extrainfo)
-     * @param mixed $args ['objectid'] ID of the object
-     * @param mixed $args ['extrainfo'] may contain itemtype
-     * @param mixed $args ['hits'] (optional) hit count for the item
+     * @param array<mixed> $args
+     * @var mixed $modname name of the calling module (see _user_display)
+     * @var mixed $itemtype optional item type for the item (or in extrainfo)
+     * @var mixed $objectid ID of the object
+     * @var mixed $extrainfo may contain itemtype
+     * @var mixed $hits (optional) hit count for the item
      * @return int|void The new hitcount for this item, or void on failure
      */
     public function __invoke(array $args = [])
@@ -44,7 +45,7 @@ class UpdateMethod extends MethodClass
         extract($args);
 
         if (!isset($objectid) || !is_numeric($objectid)) {
-            $msg = xarML(
+            $msg = $this->translate(
                 'Invalid #(1) for #(2) function #(3)() in module #(4)',
                 'object ID',
                 'admin',
@@ -66,7 +67,7 @@ class UpdateMethod extends MethodClass
         }
         $modid = xarMod::getRegId($modname);
         if (empty($modid)) {
-            $msg = xarML(
+            $msg = $this->translate(
                 'Invalid #(1) for #(2) function #(3)() in module #(4)',
                 'module name',
                 'admin',

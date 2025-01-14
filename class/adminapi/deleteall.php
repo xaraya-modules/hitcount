@@ -32,8 +32,9 @@ class DeleteallMethod extends MethodClass
 
     /**
      * delete all hitcount items for a module - hook for ('module','remove','API')
-     * @param mixed $args ['objectid'] ID of the object (must be the module name here !!)
-     * @param mixed $args ['extrainfo'] extra information
+     * @param array<mixed> $args
+     * @var mixed $objectid ID of the object (must be the module name here !!)
+     * @var mixed $extrainfo extra information
      * @return bool|void true on success, false on failure
      */
     public function __invoke(array $args = [])
@@ -43,7 +44,7 @@ class DeleteallMethod extends MethodClass
         // When called via hooks, we should get the real module name from objectid
         // here, because the current module is probably going to be 'modules' !!!
         if (!isset($objectid) || !is_string($objectid)) {
-            $msg = xarML(
+            $msg = $this->translate(
                 'Invalid #(1) for #(2) function #(3)() in module #(4)',
                 'object ID (= module name)',
                 'admin',
@@ -55,7 +56,7 @@ class DeleteallMethod extends MethodClass
 
         $modid = xarMod::getRegId($objectid);
         if (empty($modid)) {
-            $msg = xarML(
+            $msg = $this->translate(
                 'Invalid #(1) for #(2) function #(3)() in module #(4)',
                 'module ID',
                 'admin',
