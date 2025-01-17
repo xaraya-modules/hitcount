@@ -47,6 +47,7 @@ class MainMethod extends MethodClass
         if (!xarMod::apiLoad('hitcount', 'user')) {
             return;
         }
+        $usergui = $this->getParent();
 
         $data['title'] = $this->translate('Modules we are currently counting display hits for : (test)');
         $data['moditems'] = [];
@@ -160,7 +161,7 @@ class MainMethod extends MethodClass
 
         $data['moduleList'] = $moduleList;
 
-        xarTpl::setPageTitle(xarVar::prepForDisplay($this->translate('Top Items')));
+        $usergui->setPageTitle(xarVar::prepForDisplay($this->translate('Top Items')));
 
         // Return output
         return $data;
