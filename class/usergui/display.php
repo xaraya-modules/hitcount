@@ -33,7 +33,7 @@ class DisplayMethod extends MethodClass
 
     /**
      * add a hit for a specific item, and display the hitcount (= display hook)
-     * (use xarVar::setCached('Hooks.hitcount','save', 1) to tell hitcount *not*
+     * (use $this->var()->setCached('Hooks.hitcount','save', 1) to tell hitcount *not*
      * to display the hit count, but to save it in 'Hooks.hitcount', 'value')
      * @param array<mixed> $args
      * @var mixed $objectid ID of the item this hitcount is for
@@ -67,8 +67,8 @@ class DisplayMethod extends MethodClass
                 $args['itemtype'] = 0;
             }
         }
-        if (xarVar::isCached('Hooks.hitcount', 'nocount') ||
-            ($this->checkAccess('AdminHitcount', 0) && $this->getModVar('countadmin') == false)) {
+        if ($this->var()->isCached('Hooks.hitcount', 'nocount') ||
+            ($this->sec()->checkAccess('AdminHitcount', 0) && $this->mod()->getVar('countadmin') == false)) {
             $hitcount = xarMod::apiFunc('hitcount', 'user', 'get', $args);
         } else {
             $hitcount = xarMod::apiFunc('hitcount', 'admin', 'update', $args);
@@ -77,11 +77,11 @@ class DisplayMethod extends MethodClass
         // @fixme: this function should return output to a template, not directly as a string!
         if (isset($hitcount)) {
             // Display current hitcount or set the cached variable
-            if (!xarVar::isCached('Hooks.hitcount', 'save') ||
-                xarVar::getCached('Hooks.hitcount', 'save') == false) {
-                return '(' . $hitcount . ' ' . $this->translate('Reads') . ')';
+            if (!$this->var()->isCached('Hooks.hitcount', 'save') ||
+                $this->var()->getCached('Hooks.hitcount', 'save') == false) {
+                return '(' . $hitcount . ' ' . $this->ml('Reads') . ')';
             } else {
-                xarVar::setCached('Hooks.hitcount', 'value', $hitcount);
+                $this->var()->setCached('Hooks.hitcount', 'value', $hitcount);
             }
         }
 

@@ -39,26 +39,26 @@ class ViewMethod extends MethodClass
     public function __invoke(array $args = [])
     {
         // Security Check
-        if (!$this->checkAccess('AdminHitcount')) {
+        if (!$this->sec()->checkAccess('AdminHitcount')) {
             return;
         }
 
-        if (!$this->fetch('modid', 'isset', $modid, null, xarVar::DONT_SET)) {
+        if (!$this->var()->check('modid', $modid)) {
             return;
         }
-        if (!$this->fetch('itemtype', 'isset', $itemtype, null, xarVar::DONT_SET)) {
+        if (!$this->var()->check('itemtype', $itemtype)) {
             return;
         }
-        if (!$this->fetch('itemid', 'isset', $itemid, null, xarVar::DONT_SET)) {
+        if (!$this->var()->check('itemid', $itemid)) {
             return;
         }
-        if (!$this->fetch('sort', 'isset', $sort, null, xarVar::DONT_SET)) {
+        if (!$this->var()->check('sort', $sort)) {
             return;
         }
-        if (!$this->fetch('sortorder', 'isset', $sortorder, null, xarVar::DONT_SET)) {
+        if (!$this->var()->check('sortorder', $sortorder)) {
             return;
         }
-        if (!$this->fetch('startnum', 'isset', $startnum, 1, xarVar::NOT_REQUIRED)) {
+        if (!$this->var()->find('startnum', $startnum, 'isset', 1)) {
             return;
         }
 
@@ -94,13 +94,13 @@ class ViewMethod extends MethodClass
                             //    $moditem['link'] = xarController::URL($modinfo['name'],'user','view',array('itemtype' => $itemtype));
                         }
                     }
-                    $moditem['link'] = $this->getUrl(
+                    $moditem['link'] = $this->mod()->getURL(
                         'admin',
                         'view',
                         ['modid' => $modid,
                             'itemtype' => empty($itemtype) ? null : $itemtype, ]
                     );
-                    $moditem['delete'] = $this->getUrl(
+                    $moditem['delete'] = $this->mod()->getURL(
                         'admin',
                         'delete',
                         ['modid' => $modid,
@@ -111,7 +111,7 @@ class ViewMethod extends MethodClass
                     $data['numhits'] += $moditem['numhits'];
                 }
             }
-            $data['delete'] = $this->getUrl('admin', 'delete');
+            $data['delete'] = $this->mod()->getURL('admin', 'delete');
         } else {
             $modinfo = xarMod::getInfo($modid);
             if (empty($itemtype)) {
@@ -145,14 +145,14 @@ class ViewMethod extends MethodClass
                 $data['numitems'] = 0;
                 $data['numhits'] = '';
             }
-            $numstats = $this->getModVar('numstats');
+            $numstats = $this->mod()->getVar('numstats');
             if (empty($numstats)) {
                 $numstats = 100;
             }
             // pager
             $data['startnum'] = $startnum;
             $data['total'] = $data['numitems'];
-            $data['urltemplate'] = $this->getUrl(
+            $data['urltemplate'] = $this->mod()->getURL(
                 'admin',
                 'view',
                 ['modid' => $modid,
@@ -176,7 +176,7 @@ class ViewMethod extends MethodClass
                     'sortorder' => $sortorder,
                 ]
             );
-            $showtitle = $this->getModVar('showtitle');
+            $showtitle = $this->mod()->getVar('showtitle');
             if (!empty($showtitle)) {
                 $itemids = array_keys($getitems);
                 try {
@@ -197,7 +197,7 @@ class ViewMethod extends MethodClass
             foreach ($getitems as $itemid => $numhits) {
                 $data['moditems'][$itemid] = [];
                 $data['moditems'][$itemid]['numhits'] = $numhits;
-                $data['moditems'][$itemid]['delete'] = $this->getUrl(
+                $data['moditems'][$itemid]['delete'] = $this->mod()->getURL(
                     'admin',
                     'delete',
                     ['modid' => $modid,
@@ -211,7 +211,7 @@ class ViewMethod extends MethodClass
             }
             unset($getitems);
             unset($itemlinks);
-            $data['delete'] = $this->getUrl(
+            $data['delete'] = $this->mod()->getURL(
                 'admin',
                 'delete',
                 ['modid' => $modid,
@@ -227,7 +227,7 @@ class ViewMethod extends MethodClass
             //             $data['sortlink']['itemid'] = '';
             //
             //        } else {
-            $data['sortlink']['itemid'] = $this->getUrl(
+            $data['sortlink']['itemid'] = $this->mod()->getURL(
                 'admin',
                 'view',
                 ['modid' => $modid,
@@ -240,7 +240,7 @@ class ViewMethod extends MethodClass
             //       if (!empty($sort) && $sort == 'numhits') {
             //            $data['sortlink']['numhits'] = '';
             //       } else {
-            $data['sortlink']['numhits'] = $this->getUrl(
+            $data['sortlink']['numhits'] = $this->mod()->getURL(
                 'admin',
                 'view',
                 ['modid' => $modid,

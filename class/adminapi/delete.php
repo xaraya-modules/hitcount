@@ -49,7 +49,7 @@ class DeleteMethod extends MethodClass
         // if we're coming via a hook call
         if (isset($objectid)) {
             if (!is_numeric($objectid)) {
-                $msg = $this->translate(
+                $msg = $this->ml(
                     'Invalid #(1) for #(2) function #(3)() in module #(4)',
                     'object ID',
                     'admin',
@@ -72,7 +72,7 @@ class DeleteMethod extends MethodClass
             }
             $modid = xarMod::getRegId($modname);
             if (empty($modid)) {
-                $msg = $this->translate(
+                $msg = $this->ml(
                     'Invalid #(1) for #(2) function #(3)() in module #(4)',
                     'module name',
                     'admin',
@@ -122,7 +122,7 @@ class DeleteMethod extends MethodClass
 
             // if we're coming from the delete GUI (or elsewhere)
         } elseif (!empty($confirm)) {
-            if (!$this->checkAccess('AdminHitcount')) {
+            if (!$this->sec()->checkAccess('AdminHitcount')) {
                 return;
             }
 
@@ -135,7 +135,7 @@ class DeleteMethod extends MethodClass
             $query = "DELETE FROM $hitcounttable ";
             if (!empty($modid)) {
                 if (!is_numeric($modid)) {
-                    $msg = $this->translate(
+                    $msg = $this->ml(
                         'Invalid #(1) for #(2) function #(3)() in module #(4)',
                         'module id',
                         'admin',

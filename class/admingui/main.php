@@ -36,14 +36,14 @@ class MainMethod extends MethodClass
      */
     public function __invoke(array $args = [])
     {
-        if (!$this->checkAccess('ManageHitcount')) {
+        if (!$this->sec()->checkAccess('ManageHitcount')) {
             return;
         }
 
         if (xarModVars::get('modules', 'disableoverview') == 0) {
             return [];
         } else {
-            $this->redirect($this->getUrl('admin', 'view'));
+            $this->ctl()->redirect($this->mod()->getURL('admin', 'view'));
         }
         return true;
     }

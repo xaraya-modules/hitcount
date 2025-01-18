@@ -65,7 +65,7 @@ class Installer extends InstallerClass
     public function init()
     {
         // Set ModVar
-        $this->setModVar('countadmin', 0);
+        $this->mod()->setVar('countadmin', 0);
 
         // Get database information
         $dbconn = xarDB::getConn();

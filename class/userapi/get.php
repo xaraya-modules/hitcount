@@ -44,7 +44,7 @@ class GetMethod extends MethodClass
         extract($args);
 
         if (!isset($objectid) || !is_numeric($objectid)) {
-            $msg = $this->translate(
+            $msg = $this->ml(
                 'Invalid #(1) for #(2) function #(3)() in module #(4)',
                 'object ID',
                 'user',
@@ -66,7 +66,7 @@ class GetMethod extends MethodClass
         }
         $modid = xarMod::getRegId($modname);
         if (empty($modid)) {
-            $msg = $this->translate(
+            $msg = $this->ml(
                 'Invalid #(1) for #(2) function #(3)() in module #(4)',
                 'module name',
                 'user',

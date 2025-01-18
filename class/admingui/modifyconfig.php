@@ -42,14 +42,14 @@ class ModifyconfigMethod extends MethodClass
     public function __invoke(array $args = [])
     {
         // Security Check
-        if (!$this->checkAccess('AdminHitcount')) {
+        if (!$this->sec()->checkAccess('AdminHitcount')) {
             return;
         }
 
-        if (!$this->fetch('phase', 'str:1:100', $phase, 'modify', xarVar::NOT_REQUIRED)) {
+        if (!$this->var()->find('phase', $phase, 'str:1:100', 'modify')) {
             return;
         }
-        if (!$this->fetch('tab', 'str:1:100', $data['tab'], 'general', xarVar::NOT_REQUIRED)) {
+        if (!$this->var()->find('tab', $data['tab'], 'str:1:100', 'general')) {
             return;
         }
 
@@ -63,16 +63,16 @@ class ModifyconfigMethod extends MethodClass
                 switch ($data['tab']) {
                     case 'general':
                         // Quick Data Array
-                        $data['authid'] = $this->genAuthKey();
-                        $data['numitems'] = $this->getModVar('numitems');
+                        $data['authid'] = $this->sec()->genAuthKey();
+                        $data['numitems'] = $this->mod()->getVar('numitems');
                         if (empty($data['numitems'])) {
                             $data['numitems'] = 10;
                         }
-                        $data['numstats'] = $this->getModVar('numstats');
+                        $data['numstats'] = $this->mod()->getVar('numstats');
                         if (empty($data['numstats'])) {
                             $data['numstats'] = 100;
                         }
-                        $data['showtitle'] = $this->getModVar('showtitle');
+                        $data['showtitle'] = $this->mod()->getVar('showtitle');
                         if (!empty($data['showtitle'])) {
                             $data['showtitle'] = 1;
                         }
@@ -87,21 +87,21 @@ class ModifyconfigMethod extends MethodClass
                 break;
             case 'update':
                 // Confirm authorisation code
-                if (!$this->confirmAuthKey()) {
+                if (!$this->sec()->confirmAuthKey()) {
                     return xarController::badRequest('bad_author', $this->getContext());
                 }
                 switch ($data['tab']) {
                     case 'general':
-                        if (!$this->fetch('countadmin', 'checkbox', $countadmin, false, xarVar::NOT_REQUIRED)) {
+                        if (!$this->var()->find('countadmin', $countadmin, 'checkbox', false)) {
                             return;
                         }
-                        if (!$this->fetch('numitems', 'int', $numitems, 10, xarVar::NOT_REQUIRED)) {
+                        if (!$this->var()->find('numitems', $numitems, 'int', 10)) {
                             return;
                         }
-                        if (!$this->fetch('numstats', 'int', $numstats, 100, xarVar::NOT_REQUIRED)) {
+                        if (!$this->var()->find('numstats', $numstats, 'int', 100)) {
                             return;
                         }
-                        if (!$this->fetch('showtitle', 'checkbox', $showtitle, false, xarVar::NOT_REQUIRED)) {
+                        if (!$this->var()->find('showtitle', $showtitle, 'checkbox', false)) {
                             return;
                         }
 
@@ -114,11 +114,11 @@ class ModifyconfigMethod extends MethodClass
                         }
 
                         // Update module variables
-                        $this->setModVar('countadmin', $countadmin);
-                        $this->setModVar('numitems', $numitems);
-                        $this->setModVar('numstats', $numstats);
-                        $this->setModVar('showtitle', $showtitle);
-                        $this->redirect($this->getUrl('admin', 'modifyconfig'));
+                        $this->mod()->setVar('countadmin', $countadmin);
+                        $this->mod()->setVar('numitems', $numitems);
+                        $this->mod()->setVar('numstats', $numstats);
+                        $this->mod()->setVar('showtitle', $showtitle);
+                        $this->ctl()->redirect($this->mod()->getURL('admin', 'modifyconfig'));
                         // Return
                         return true;
                     case 'tab2':

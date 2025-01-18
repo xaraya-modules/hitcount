@@ -39,7 +39,7 @@ class MainMethod extends MethodClass
     public function __invoke(array $args = [])
     {
         // Security Check
-        if (!$this->checkAccess('ViewHitcountItems')) {
+        if (!$this->sec()->checkAccess('ViewHitcountItems')) {
             return;
         }
 
@@ -47,13 +47,12 @@ class MainMethod extends MethodClass
         if (!xarMod::apiLoad('hitcount', 'user')) {
             return;
         }
-        $usergui = $this->getParent();
 
-        $data['title'] = $this->translate('Modules we are currently counting display hits for : (test)');
+        $data['title'] = $this->ml('Modules we are currently counting display hits for : (test)');
         $data['moditems'] = [];
         $moduleList = [];
 
-        $numitems = $this->getModVar('numitems');
+        $numitems = $this->mod()->getVar('numitems');
         if (empty($numitems)) {
             $numitems = 10;
         }
@@ -161,7 +160,7 @@ class MainMethod extends MethodClass
 
         $data['moduleList'] = $moduleList;
 
-        $usergui->setPageTitle(xarVar::prepForDisplay($this->translate('Top Items')));
+        $this->tpl()->setPageTitle(xarVar::prepForDisplay($this->ml('Top Items')));
 
         // Return output
         return $data;
