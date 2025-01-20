@@ -160,7 +160,7 @@ class MainMethod extends MethodClass
 
         $data['moduleList'] = $moduleList;
 
-        $this->tpl()->setPageTitle(xarVar::prepForDisplay($this->ml('Top Items')));
+        $this->tpl()->setPageTitle($this->var()->prep($this->ml('Top Items')));
 
         // Return output
         return $data;

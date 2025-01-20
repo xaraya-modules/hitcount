@@ -73,8 +73,8 @@ class DeleteallMethod extends MethodClass
             return;
         }
 
-        $dbconn = xarDB::getConn();
-        $xartable = & xarDB::getTables();
+        $dbconn = $this->db()->getConn();
+        $xartable = & $this->db()->getTables();
         $hitcounttable = $xartable['hitcount'];
 
         // FIXME: delete only for a particular module + itemtype (e.g. dd object, articles pubtype, ...)

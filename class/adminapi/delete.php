@@ -97,8 +97,8 @@ class DeleteMethod extends MethodClass
                 return;
             }
 
-            $dbconn = xarDB::getConn();
-            $xartable = & xarDB::getTables();
+            $dbconn = $this->db()->getConn();
+            $xartable = & $this->db()->getTables();
             $hitcounttable = $xartable['hitcount'];
 
             // Don't bother looking if the item exists here...
@@ -127,8 +127,8 @@ class DeleteMethod extends MethodClass
             }
 
             // Database information
-            $dbconn = xarDB::getConn();
-            $xartable = & xarDB::getTables();
+            $dbconn = $this->db()->getConn();
+            $xartable = & $this->db()->getTables();
             $hitcounttable = $xartable['hitcount'];
 
             $bindvars = [];

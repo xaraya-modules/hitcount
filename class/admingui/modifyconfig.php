@@ -88,7 +88,7 @@ class ModifyconfigMethod extends MethodClass
             case 'update':
                 // Confirm authorisation code
                 if (!$this->sec()->confirmAuthKey()) {
-                    return xarController::badRequest('bad_author', $this->getContext());
+                    return $this->ctl()->badRequest('bad_author', $this->getContext());
                 }
                 switch ($data['tab']) {
                     case 'general':
@@ -108,7 +108,7 @@ class ModifyconfigMethod extends MethodClass
                         $isvalid = $data['module_settings']->checkInput();
                         if (!$isvalid) {
                             $data['context'] ??= $this->getContext();
-                            return xarTpl::module('eventhub', 'admin', 'modifyconfig', $data);
+                            return $this->tpl()->module('eventhub', 'admin', 'modifyconfig', $data);
                         } else {
                             $itemid = $data['module_settings']->updateItem();
                         }

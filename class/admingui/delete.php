@@ -94,7 +94,7 @@ class DeleteMethod extends MethodClass
         }
 
         if (!$this->sec()->confirmAuthKey()) {
-            return xarController::badRequest('bad_author', $this->getContext());
+            return $this->ctl()->badRequest('bad_author', $this->getContext());
         }
         if (!xarMod::apiFunc(
             'hitcount',
