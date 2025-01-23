@@ -68,8 +68,8 @@ class Installer extends InstallerClass
         $this->mod()->setVar('countadmin', 0);
 
         // Get database information
-        $dbconn = xarDB::getConn();
-        $xartable = & xarDB::getTables();
+        $dbconn = $this->db()->getConn();
+        $xartable = & $this->db()->getTables();
 
         //Load Table Maintenance API
         sys::import('xaraya.tableddl');
@@ -116,7 +116,7 @@ class Installer extends InstallerClass
 
         $query = xarTableDDL::createIndex(
             $xartable['hitcount'],
-            ['name'   => 'i_' . xarDB::getPrefix() . '_hitcombo',
+            ['name'   => 'i_' . $this->db()->getPrefix() . '_hitcombo',
                 'fields' => ['module_id','itemtype', 'itemid'],
                 'unique' => false, ]
         );
@@ -128,7 +128,7 @@ class Installer extends InstallerClass
 
         $query = xarTableDDL::createIndex(
             $xartable['hitcount'],
-            ['name'   => 'i_' . xarDB::getPrefix() . '_hititem',
+            ['name'   => 'i_' . $this->db()->getPrefix() . '_hititem',
                 'fields' => ['itemid'],
                 'unique' => false, ]
         );
@@ -140,7 +140,7 @@ class Installer extends InstallerClass
 
         $query = xarTableDDL::createIndex(
             $xartable['hitcount'],
-            ['name'   => 'i_' . xarDB::getPrefix() . '_hits',
+            ['name'   => 'i_' . $this->db()->getPrefix() . '_hits',
                 'fields' => ['hits'],
                 'unique' => false, ]
         );
@@ -230,8 +230,8 @@ class Installer extends InstallerClass
                     when upgrading from this version
 
                 // switch from hook functions to hook class handlers
-                $dbconn = xarDB::getConn();
-                $xartable =& xarDB::getTables();
+                $dbconn = $this->db()->getConn();
+                $xartable =& $this->db()->getTables();
 
                 $tmodInfo = xarMod::getBaseInfo('hitcount');
                 $tmodId = $tmodInfo['systemid'];

@@ -16,13 +16,14 @@
  *
  * Original Author of file: Jim McDonald
  */
-function hitcount_xartables()
+function hitcount_xartables(?string $prefix = null)
 {
     // Initialise table array
     $xartable = [];
+    $prefix ??= xarDB::getPrefix();
 
     // Name for hitcount database entities
-    $hitcount = xarDB::getPrefix() . '_hitcount';
+    $hitcount = $prefix . '_hitcount';
 
     // Table name
     $xartable['hitcount'] = $hitcount;
