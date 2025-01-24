@@ -81,14 +81,14 @@ class MainMethod extends MethodClass
                 $mod['numhits'] += $moditem['numhits'] = $stats['hits'];
                 if ($itemtype == 0) {
                     $moditem['name'] = ucwords($modinfo['displayname']);
-                    $moditem['link'] = xarController::URL($modinfo['name'], 'user', 'main');
+                    $moditem['link'] = $this->ctl()->getModuleURL($modinfo['name'], 'user', 'main');
                 } else {
                     if (isset($mytypes) && !empty($mytypes[$itemtype])) {
                         $moditem['name'] = $mytypes[$itemtype]['label'];
                         $moditem['link'] = $mytypes[$itemtype]['url'];
                     } else {
                         $moditem['name'] = ucwords($modinfo['displayname']) . ' ' . $itemtype;
-                        $moditem['link'] = xarController::URL($modinfo['name'], 'user', 'view', ['itemtype' => $itemtype]);
+                        $moditem['link'] = $this->ctl()->getModuleURL($modinfo['name'], 'user', 'view', ['itemtype' => $itemtype]);
                     }
                 }
                 $moditem['tophits'] = xarMod::apiFunc(
