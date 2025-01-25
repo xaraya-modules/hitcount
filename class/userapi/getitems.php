@@ -43,6 +43,7 @@ class GetitemsMethod extends MethodClass
      * @var mixed $numitems number of items to return
      * @var mixed $startnum start at this number (1-based)
      * @return array|void $array[$itemid] = $hits;
+     * @see UserApi::getitems()
      */
     public function __invoke(array $args = [])
     {
@@ -51,15 +52,13 @@ class GetitemsMethod extends MethodClass
 
         // Argument check
         if (!isset($modname) && !isset($modid)) {
-            xarSession::setVar('errormsg', _MODARGSERROR);
-            return;
+            throw new BadParameterException(null, 'Missing modname');
         }
         if (!empty($modname)) {
             $modid = xarMod::getRegId($modname);
         }
         if (empty($modid)) {
-            xarSession::setVar('errormsg', _MODARGSERROR);
-            return;
+            throw new BadParameterException($modname, 'Invalid modname #(1)');
         } elseif (empty($modname)) {
             $modinfo = xarMod::getInfo($modid);
             $modname = $modinfo['name'];

@@ -37,6 +37,7 @@ class GetMethod extends MethodClass
      * @var mixed $itemtype item type of the item this hitcount is for
      * @var mixed $objectid ID of the item this hitcount is for
      * @return int|void The corresponding hit count, or void if no hit exists
+     * @see UserApi::get()
      */
     public function __invoke(array $args = [])
     {

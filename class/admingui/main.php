@@ -33,6 +33,7 @@ class MainMethod extends MethodClass
     /**
      * Add a standard screen upon entry to the module.
      * @return bool|array|void true on success of redirect
+     * @see AdminGui::main()
      */
     public function __invoke(array $args = [])
     {

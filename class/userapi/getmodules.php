@@ -31,7 +31,8 @@ class GetmodulesMethod extends MethodClass
 
     /**
      * get the list of modules for which we're counting items
-     * @return array $array[$modid][$itemtype] = array('items' => $numitems,'hits' => $numhits);
+     * @return array|void $array[$modid][$itemtype] = array('items' => $numitems,'hits' => $numhits);
+     * @see UserApi::getmodules()
      */
     public function __invoke(array $args = [])
     {

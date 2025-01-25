@@ -13,6 +13,7 @@ namespace Xaraya\Modules\Hitcount\AdminApi;
 
 
 use Xaraya\Modules\Hitcount\AdminApi;
+use Xaraya\Modules\Hitcount\UserApi;
 use Xaraya\Modules\MethodClass;
 use xarMod;
 use xarSecurity;
@@ -39,10 +40,15 @@ class UpdateMethod extends MethodClass
      * @var mixed $extrainfo may contain itemtype
      * @var mixed $hits (optional) hit count for the item
      * @return int|void The new hitcount for this item, or void on failure
+     * @see AdminApi::update()
      */
     public function __invoke(array $args = [])
     {
         extract($args);
+        /** @var UserApi $userapi */
+        $userapi = $this->userapi();
+        /** @var AdminApi $adminapi */
+        $adminapi = $this->adminapi();
 
         if (!isset($objectid) || !is_numeric($objectid)) {
             $msg = $this->ml(
@@ -97,22 +103,14 @@ class UpdateMethod extends MethodClass
         }
 
         // get current hit count
-        $oldhits = xarMod::apiFunc(
-            'hitcount',
-            'user',
-            'get',
-            ['objectid' => $objectid,
+        $oldhits = $userapi->get(['objectid' => $objectid,
                 'itemtype' => $itemtype,
                 'modname' => $modname, ]
         );
 
         // create the item if necessary
         if (!isset($oldhits)) {
-            $hcid = xarMod::apiFunc(
-                'hitcount',
-                'admin',
-                'create',
-                ['objectid' => $objectid,
+            $hcid = $adminapi->create(['objectid' => $objectid,
                     'itemtype' => $itemtype,
                     'modname' => $modname, ]
             );

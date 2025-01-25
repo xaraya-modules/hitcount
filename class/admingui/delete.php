@@ -13,6 +13,7 @@ namespace Xaraya\Modules\Hitcount\AdminGui;
 
 
 use Xaraya\Modules\Hitcount\AdminGui;
+use Xaraya\Modules\Hitcount\AdminApi;
 use Xaraya\Modules\MethodClass;
 use xarSecurity;
 use xarVar;
@@ -40,9 +41,12 @@ class DeleteMethod extends MethodClass
      *     int itemid
      *     str confirm When empty the confirmation page is shown
      * @return bool|string|void True on success of deletion
+     * @see AdminGui::delete()
      */
     public function __invoke(array $args = [])
     {
+        /** @var AdminApi $adminapi */
+        $adminapi = $this->adminapi();
         // Security Check
         if (!$this->sec()->checkAccess('AdminHitcount')) {
             return;
@@ -94,13 +98,9 @@ class DeleteMethod extends MethodClass
         }
 
         if (!$this->sec()->confirmAuthKey()) {
-            return $this->ctl()->badRequest('bad_author', $this->getContext());
+            return $this->ctl()->badRequest('bad_author');
         }
-        if (!xarMod::apiFunc(
-            'hitcount',
-            'admin',
-            'delete',
-            ['modid' => $modid,
+        if (!$adminapi->delete(['modid' => $modid,
                 'itemtype' => $itemtype,
                 'itemid' => $itemid,
                 'confirm' => $confirm, ]

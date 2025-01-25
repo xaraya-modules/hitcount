@@ -13,6 +13,8 @@ namespace Xaraya\Modules\Hitcount\UserGui;
 
 
 use Xaraya\Modules\Hitcount\UserGui;
+use Xaraya\Modules\Hitcount\UserApi;
+use Xaraya\Modules\Hitcount\AdminApi;
 use Xaraya\Modules\MethodClass;
 use xarVar;
 use xarMod;
@@ -39,10 +41,15 @@ class DisplayMethod extends MethodClass
      * @var mixed $objectid ID of the item this hitcount is for
      * @var mixed $extrainfo may contain itemtype
      * @return string|void output with hitcount information
+     * @see UserGui::display()
      */
     public function __invoke(array $args = [])
     {
         extract($args);
+        /** @var UserApi $userapi */
+        $userapi = $this->userapi();
+        /** @var AdminApi $adminapi */
+        $adminapi = $this->adminapi();
 
         // Load API
         if (!xarMod::apiLoad('hitcount', 'admin')) {
@@ -69,9 +76,9 @@ class DisplayMethod extends MethodClass
         }
         if ($this->var()->isCached('Hooks.hitcount', 'nocount') ||
             ($this->sec()->checkAccess('AdminHitcount', 0) && $this->mod()->getVar('countadmin') == false)) {
-            $hitcount = xarMod::apiFunc('hitcount', 'user', 'get', $args);
+            $hitcount = $userapi->get($args);
         } else {
-            $hitcount = xarMod::apiFunc('hitcount', 'admin', 'update', $args);
+            $hitcount = $adminapi->update($args);
         }
 
         // @fixme: this function should return output to a template, not directly as a string!

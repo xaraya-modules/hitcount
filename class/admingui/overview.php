@@ -36,6 +36,7 @@ class OverviewMethod extends MethodClass
      * @author the Hitcount module development team
      * @return array|string|void xarTpl::module with $data containing template data
      * @since 4 March 2006
+     * @see AdminGui::overview()
      */
     public function __invoke(array $args = [])
     {

@@ -51,6 +51,7 @@ class LeftjoinMethod extends MethodClass
      * 'moduleid'  => '_hitcount.module_id',
      * // ...
      * 'hits'  => '_hitcount.hits')
+     * @see UserApi::leftjoin()
      */
     public function __invoke(array $args = [])
     {

@@ -36,6 +36,7 @@ class DeleteallMethod extends MethodClass
      * @var mixed $objectid ID of the object (must be the module name here !!)
      * @var mixed $extrainfo extra information
      * @return bool|void true on success, false on failure
+     * @see AdminApi::deleteall()
      */
     public function __invoke(array $args = [])
     {

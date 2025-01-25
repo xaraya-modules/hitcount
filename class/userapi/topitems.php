@@ -39,6 +39,7 @@ class TopitemsMethod extends MethodClass
      * @var mixed $numitems number of items to return
      * @var mixed $startnum start at this number (1-based)
      * @return array|void Array('itemid' => $itemid, 'hits' => $hits)
+     * @see UserApi::topitems()
      */
     public function __invoke(array $args = [])
     {
@@ -47,13 +48,11 @@ class TopitemsMethod extends MethodClass
 
         // Argument check
         if (!isset($modname)) {
-            xarSession::setVar('errormsg', _MODARGSERROR);
-            return;
+            throw new BadParameterException(null, 'Missing modname');
         }
         $modid = xarMod::getRegId($modname);
         if (empty($modid)) {
-            xarSession::setVar('errormsg', _MODARGSERROR);
-            return;
+            throw new BadParameterException($modname, 'Invalid modname #(1)');
         }
         if (empty($itemtype)) {
             $itemtype = 0;

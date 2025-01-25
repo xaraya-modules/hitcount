@@ -13,6 +13,7 @@ namespace Xaraya\Modules\Hitcount\AdminGui;
 
 
 use Xaraya\Modules\Hitcount\AdminGui;
+use Xaraya\Modules\Hitcount\UserApi;
 use Xaraya\Modules\MethodClass;
 use xarSecurity;
 use xarVar;
@@ -35,9 +36,12 @@ class ViewMethod extends MethodClass
     /**
      * View statistics about hitcount
      * @return array|void
+     * @see AdminGui::view()
      */
     public function __invoke(array $args = [])
     {
+        /** @var UserApi $userapi */
+        $userapi = $this->userapi();
         // Security Check
         if (!$this->sec()->checkAccess('AdminHitcount')) {
             return;
@@ -64,7 +68,7 @@ class ViewMethod extends MethodClass
 
         $data = [];
 
-        $modlist = xarMod::apiFunc('hitcount', 'user', 'getmodules');
+        $modlist = $userapi->getmodules();
 
         if (empty($modid)) {
             $data['moditems'] = [];
@@ -164,11 +168,7 @@ class ViewMethod extends MethodClass
             $data['itemsperpage'] = $numstats;
 
             $data['modid'] = $modid;
-            $getitems = xarMod::apiFunc(
-                'hitcount',
-                'user',
-                'getitems',
-                ['modid' => $modid,
+            $getitems = $userapi->getitems(['modid' => $modid,
                     'itemtype' => $itemtype,
                     'numitems' => $numstats,
                     'startnum' => $startnum,

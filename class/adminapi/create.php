@@ -40,6 +40,7 @@ class CreateMethod extends MethodClass
      * @var mixed $itemtype optional item type for the item (not used in hook calls)
      * @var mixed $hits optional hit count for the item (not used in hook calls)
      * @return int|void hitcount item ID on success, void on failure
+     * @see AdminApi::create()
      */
     public function __invoke(array $args = [])
     {

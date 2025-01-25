@@ -13,6 +13,7 @@ namespace Xaraya\Modules\Hitcount\UserGui;
 
 
 use Xaraya\Modules\Hitcount\UserGui;
+use Xaraya\Modules\Hitcount\UserApi;
 use Xaraya\Modules\MethodClass;
 use xarSecurity;
 use xarMod;
@@ -35,9 +36,12 @@ class MainMethod extends MethodClass
 
     /**
      * the main user function (nothing interesting here - might be removed)
+     * @see UserGui::main()
      */
     public function __invoke(array $args = [])
     {
+        /** @var UserApi $userapi */
+        $userapi = $this->userapi();
         // Security Check
         if (!$this->sec()->checkAccess('ViewHitcountItems')) {
             return;
@@ -56,7 +60,7 @@ class MainMethod extends MethodClass
         if (empty($numitems)) {
             $numitems = 10;
         }
-        $modlist = xarMod::apiFunc('hitcount', 'user', 'getmodules');
+        $modlist = $userapi->getmodules();
         foreach ($modlist as $modid => $itemtypes) {
             $modinfo = xarMod::getInfo($modid);
             // Get the list of all item types for this module (if any)
@@ -91,11 +95,7 @@ class MainMethod extends MethodClass
                         $moditem['link'] = $this->ctl()->getModuleURL($modinfo['name'], 'user', 'view', ['itemtype' => $itemtype]);
                     }
                 }
-                $moditem['tophits'] = xarMod::apiFunc(
-                    'hitcount',
-                    'user',
-                    'topitems',
-                    ['modname'  => $modinfo['name'],
+                $moditem['tophits'] = $userapi->topitems(['modname'  => $modinfo['name'],
                         'itemtype' => $itemtype,
                         'numitems' => $numitems, ]
                 );

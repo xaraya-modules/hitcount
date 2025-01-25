@@ -38,6 +38,7 @@ class ModifyconfigMethod extends MethodClass
      * modify configuration
      * @param string phase
      * @return array|string|void
+     * @see AdminGui::modifyconfig()
      */
     public function __invoke(array $args = [])
     {
@@ -88,7 +89,7 @@ class ModifyconfigMethod extends MethodClass
             case 'update':
                 // Confirm authorisation code
                 if (!$this->sec()->confirmAuthKey()) {
-                    return $this->ctl()->badRequest('bad_author', $this->getContext());
+                    return $this->ctl()->badRequest('bad_author');
                 }
                 switch ($data['tab']) {
                     case 'general':
