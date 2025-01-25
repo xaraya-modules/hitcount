@@ -138,14 +138,14 @@ class HitCountProperty extends NumberBoxProperty
     private function checkForUpdate()
     {
         // check for 'preview' argument
-        xarVar::fetch('preview', 'isset', $preview, null, xarVar::DONT_SET);
+        $this->var()->fetch('preview', 'isset', $preview, null, xarVar::DONT_SET);
 
         // if we're previewing an item, don't update
         if (!empty($preview)) {
             return false;
 
             // if we don't count admin hits and the user is an admin, don't update
-        } elseif (!xarModVars::get('hitcount', 'countadmin') && xarSecurity::check('AdminHitcount', 0)) {
+        } elseif (!$this->mod()->getVar('countadmin') && $this->sec()->checkAccess('AdminHitcount', 0)) {
             return false;
         } else {
             return true;
