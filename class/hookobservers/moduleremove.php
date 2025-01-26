@@ -28,17 +28,17 @@ class HitcountModuleRemoveObserver extends HookObserver implements ixarHookObser
      */
     public function notify(ixarEventSubject $subject)
     {
+        $this->setContext($subject->getContext());
         // for module remove, we need the module name, we get that from the objectid
         // get args from subject (array containing objectid, extrainfo)
         $args = $subject->getArgs();
         extract($args);
-        //$context = $subject->getContext();
 
         // validate parameters...
         // NOTE: this isn't strictly necessary, the hook subject will have already
         // taken care of validations and these values can be relied on to be pre-populated
         // however, just for completeness...
-        if (isset($objectid) && !is_string($objectid) || !xarMod::isAvailable($objectid)) {
+        if (isset($objectid) && !is_string($objectid) || !$this->mod()->isAvailable($objectid)) {
             $invalid['objectid'] = 1;
         }
 
@@ -52,9 +52,9 @@ class HitcountModuleRemoveObserver extends HookObserver implements ixarHookObser
         // call the hitcount delete api function
         // @fixme: the delete func returns (potentially) an empty array
         // there's no way to reliably check deletion was a success
-        $hit = xarMod::apiFunc(
+        $hit = $this->mod()->apiMethod(
             'hitcount',
-            'admin',
+            'adminapi',
             'deleteall',
             [
                 'objectid' => $objectid,

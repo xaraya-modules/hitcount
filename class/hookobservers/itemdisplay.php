@@ -22,22 +22,23 @@ sys::import('xaraya.structures.hooks.observer');
 class HitcountItemDisplayObserver extends HookObserver
 {
     public $module = 'hitcount';
+    public $type = 'user';
 
     /**
      * @param ixarHookSubject $subject
      */
     public function notify(ixarEventSubject $subject)
     {
+        $this->setContext($subject->getContext());
         // get extrainfo from subject (array containing module, module_id, itemtype, itemid)
         $extrainfo = $subject->getExtrainfo();
         extract($extrainfo);
-        $context = $subject->getContext();
 
         // validate parameters...
         // NOTE: this isn't strictly necessary, the hook subject will have already
         // taken care of validations and these values can be relied on to be pre-populated
         // however, just for completeness...
-        if (!isset($module) || !is_string($module) || !xarMod::isAvailable($module)) {
+        if (!isset($module) || !is_string($module) || !$this->mod()->isAvailable($module)) {
             $invalid['module'] = 1;
         }
         if (isset($itemtype) && !is_numeric($itemtype)) {
@@ -55,16 +56,15 @@ class HitcountItemDisplayObserver extends HookObserver
         }
 
         // the subject expects a string to display, return the display gui func
-        return xarMod::guiFunc(
+        return $this->mod()->guiMethod(
             'hitcount',
-            'user',
+            'usergui',
             'display',
             [
                 'modname' => $module,
                 'itemtype' => !empty($itemtype) ? $itemtype : 0,
                 'objectid' => $itemid,
-            ],
-            $context
+            ]
         );
     }
 }
