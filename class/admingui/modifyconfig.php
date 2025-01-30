@@ -54,7 +54,7 @@ class ModifyconfigMethod extends MethodClass
             return;
         }
 
-        $data['module_settings'] = xarMod::apiFunc('base', 'admin', 'getmodulesettings', ['module' => 'hitcount']);
+        $data['module_settings'] = $this->mod()->apiFunc('base', 'admin', 'getmodulesettings', ['module' => 'hitcount']);
         $data['module_settings']->setFieldList('items_per_page, use_module_alias, module_alias_name, enable_short_urls');
         $data['module_settings']->getItem();
 

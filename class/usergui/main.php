@@ -48,7 +48,7 @@ class MainMethod extends MethodClass
         }
 
         // Load API
-        if (!xarMod::apiLoad('hitcount', 'user')) {
+        if (!$this->mod()->apiLoad('hitcount', 'user')) {
             return;
         }
 
@@ -62,10 +62,10 @@ class MainMethod extends MethodClass
         }
         $modlist = $userapi->getmodules();
         foreach ($modlist as $modid => $itemtypes) {
-            $modinfo = xarMod::getInfo($modid);
+            $modinfo = $this->mod()->getInfo($modid);
             // Get the list of all item types for this module (if any)
             try {
-                $mytypes = xarMod::apiFunc($modinfo['name'], 'user', 'getitemtypes');
+                $mytypes = $this->mod()->apiFunc($modinfo['name'], 'user', 'getitemtypes');
             } catch (Exception $e) {
                 $mytypes = [];
             }
@@ -115,7 +115,7 @@ class MainMethod extends MethodClass
                     }
 
                     try {
-                        $moditem['toplinks'] = xarMod::apiFunc(
+                        $moditem['toplinks'] = $this->mod()->apiFunc(
                             $modinfo['name'],
                             'user',
                             'getitemlinks',

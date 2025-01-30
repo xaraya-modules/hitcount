@@ -75,10 +75,10 @@ class ViewMethod extends MethodClass
             $data['numitems'] = 0;
             $data['numhits'] = 0;
             foreach ($modlist as $modid => $itemtypes) {
-                $modinfo = xarMod::getInfo($modid);
+                $modinfo = $this->mod()->getInfo($modid);
                 // Get the list of all item types for this module (if any)
                 try {
-                    $mytypes = xarMod::apiFunc($modinfo['name'], 'user', 'getitemtypes');
+                    $mytypes = $this->mod()->apiFunc($modinfo['name'], 'user', 'getitemtypes');
                 } catch (Exception $e) {
                     $mytypes = [];
                 }
@@ -117,7 +117,7 @@ class ViewMethod extends MethodClass
             }
             $data['delete'] = $this->mod()->getURL('admin', 'delete');
         } else {
-            $modinfo = xarMod::getInfo($modid);
+            $modinfo = $this->mod()->getInfo($modid);
             if (empty($itemtype)) {
                 $data['modname'] = ucwords($modinfo['displayname']);
                 $itemtype = null;
@@ -127,7 +127,7 @@ class ViewMethod extends MethodClass
             } else {
                 // Get the list of all item types for this module (if any)
                 try {
-                    $mytypes = xarMod::apiFunc($modinfo['name'], 'user', 'getitemtypes');
+                    $mytypes = $this->mod()->apiFunc($modinfo['name'], 'user', 'getitemtypes');
                 } catch (Exception $e) {
                     $mytypes = [];
                 }
@@ -180,7 +180,7 @@ class ViewMethod extends MethodClass
             if (!empty($showtitle)) {
                 $itemids = array_keys($getitems);
                 try {
-                    $itemlinks = xarMod::apiFunc(
+                    $itemlinks = $this->mod()->apiFunc(
                         $modinfo['name'],
                         'user',
                         'getitemlinks',

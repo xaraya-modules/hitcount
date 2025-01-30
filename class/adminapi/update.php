@@ -68,10 +68,10 @@ class UpdateMethod extends MethodClass
                 isset($extrainfo['module']) && is_string($extrainfo['module'])) {
                 $modname = $extrainfo['module'];
             } else {
-                $modname = xarMod::getName();
+                $modname = $this->mod()->getName();
             }
         }
-        $modid = xarMod::getRegId($modname);
+        $modid = $this->mod()->getRegID($modname);
         if (empty($modid)) {
             $msg = $this->ml(
                 'Invalid #(1) for #(2) function #(3)() in module #(4)',
@@ -98,7 +98,7 @@ class UpdateMethod extends MethodClass
             return;
         }
 
-        if (!xarMod::apiLoad('hitcount', 'user')) {
+        if (!$this->mod()->apiLoad('hitcount', 'user')) {
             return;
         }
 

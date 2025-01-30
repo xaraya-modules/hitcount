@@ -55,7 +55,7 @@ class DeleteallMethod extends MethodClass
             throw new Exception($msg);
         }
 
-        $modid = xarMod::getRegId($objectid);
+        $modid = $this->mod()->getRegID($objectid);
         if (empty($modid)) {
             $msg = $this->ml(
                 'Invalid #(1) for #(2) function #(3)() in module #(4)',

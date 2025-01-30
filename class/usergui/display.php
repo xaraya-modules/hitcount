@@ -52,7 +52,7 @@ class DisplayMethod extends MethodClass
         $adminapi = $this->adminapi();
 
         // Load API
-        if (!xarMod::apiLoad('hitcount', 'admin')) {
+        if (!$this->mod()->apiLoad('hitcount', 'admin')) {
             return;
         }
 
@@ -63,7 +63,7 @@ class DisplayMethod extends MethodClass
                 isset($extrainfo['module']) && is_string($extrainfo['module'])) {
                 $args['modname'] = $extrainfo['module'];
             } else {
-                $args['modname'] = xarMod::getName();
+                $args['modname'] = $this->mod()->getName();
             }
         }
         if (!isset($args['itemtype']) || !is_numeric($args['itemtype'])) {

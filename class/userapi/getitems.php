@@ -55,12 +55,12 @@ class GetitemsMethod extends MethodClass
             throw new BadParameterException(null, 'Missing modname');
         }
         if (!empty($modname)) {
-            $modid = xarMod::getRegId($modname);
+            $modid = $this->mod()->getRegID($modname);
         }
         if (empty($modid)) {
             throw new BadParameterException($modname, 'Invalid modname #(1)');
         } elseif (empty($modname)) {
-            $modinfo = xarMod::getInfo($modid);
+            $modinfo = $this->mod()->getInfo($modid);
             $modname = $modinfo['name'];
         }
         if (empty($itemtype)) {
