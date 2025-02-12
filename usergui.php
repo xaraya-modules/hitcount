@@ -15,7 +15,7 @@ use Xaraya\Modules\UserGuiClass;
 use sys;
 
 sys::import('xaraya.modules.usergui');
-sys::import('modules.hitcount.class.userapi');
+sys::import('modules.hitcount.userapi');
 
 /**
  * Handle the hitcount user GUI

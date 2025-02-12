@@ -15,7 +15,7 @@ use Xaraya\Modules\AdminGuiClass;
 use sys;
 
 sys::import('xaraya.modules.admingui');
-sys::import('modules.hitcount.class.adminapi');
+sys::import('modules.hitcount.adminapi');
 
 /**
  * Handle the hitcount admin GUI
