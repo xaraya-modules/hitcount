@@ -47,12 +47,8 @@ class ModifyconfigMethod extends MethodClass
             return;
         }
 
-        if (!$this->var()->find('phase', $phase, 'str:1:100', 'modify')) {
-            return;
-        }
-        if (!$this->var()->find('tab', $data['tab'], 'str:1:100', 'general')) {
-            return;
-        }
+        $this->var()->find('phase', $phase, 'str:1:100', 'modify');
+        $this->var()->find('tab', $data['tab'], 'str:1:100', 'general');
 
         $data['module_settings'] = $this->mod()->apiFunc('base', 'admin', 'getmodulesettings', ['module' => 'hitcount']);
         $data['module_settings']->setFieldList('items_per_page, use_module_alias, module_alias_name, enable_short_urls');
@@ -93,18 +89,10 @@ class ModifyconfigMethod extends MethodClass
                 }
                 switch ($data['tab']) {
                     case 'general':
-                        if (!$this->var()->find('countadmin', $countadmin, 'checkbox', false)) {
-                            return;
-                        }
-                        if (!$this->var()->find('numitems', $numitems, 'int', 10)) {
-                            return;
-                        }
-                        if (!$this->var()->find('numstats', $numstats, 'int', 100)) {
-                            return;
-                        }
-                        if (!$this->var()->find('showtitle', $showtitle, 'checkbox', false)) {
-                            return;
-                        }
+                        $this->var()->find('countadmin', $countadmin, 'checkbox', false);
+                        $this->var()->find('numitems', $numitems, 'int', 10);
+                        $this->var()->find('numstats', $numstats, 'int', 100);
+                        $this->var()->find('showtitle', $showtitle, 'checkbox', false);
 
                         $isvalid = $data['module_settings']->checkInput();
                         if (!$isvalid) {
