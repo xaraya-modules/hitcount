@@ -59,7 +59,7 @@ class TopitemsMethod extends MethodClass
         }
 
         // Security check
-        if (!xarSecurity::check('ViewHitcountItems', 1, 'Item', "$modname:$itemtype:All")) {
+        if (!$this->sec()->check('ViewHitcountItems', 1, 'Item', "$modname:$itemtype:All")) {
             return;
         }
 

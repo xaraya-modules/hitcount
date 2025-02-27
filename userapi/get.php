@@ -87,7 +87,7 @@ class GetMethod extends MethodClass
 
         // TODO: re-evaluate this for hook calls !!
         // Security check
-        if (!xarSecurity::check('ViewHitcountItems', 1, 'Item', "$modname:$itemtype:$objectid")) {
+        if (!$this->sec()->check('ViewHitcountItems', 1, 'Item', "$modname:$itemtype:$objectid")) {
             return;
         }
 

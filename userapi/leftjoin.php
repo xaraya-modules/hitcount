@@ -74,12 +74,12 @@ class LeftjoinMethod extends MethodClass
         // Security check
         if (count($itemids) > 0) {
             foreach ($itemids as $itemid) {
-                if (!xarSecurity::check('ViewHitcountItems', 1, 'Item', "$modname:All:$itemid")) {
+                if (!$this->sec()->check('ViewHitcountItems', 1, 'Item', "$modname:All:$itemid")) {
                     return;
                 }
             }
         } else {
-            if (!xarSecurity::check('ViewHitcountItems', 1, 'Item', "$modname:All:All")) {
+            if (!$this->sec()->check('ViewHitcountItems', 1, 'Item', "$modname:All:All")) {
                 return;
             }
         }

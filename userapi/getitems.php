@@ -83,12 +83,12 @@ class GetitemsMethod extends MethodClass
         // Security check
         if (count($itemids) > 0) {
             foreach ($itemids as $itemid) {
-                if (!xarSecurity::check('ViewHitcountItems', 1, 'Item', "$modname:$itemtype:$itemid")) {
+                if (!$this->sec()->check('ViewHitcountItems', 1, 'Item', "$modname:$itemtype:$itemid")) {
                     return;
                 }
             }
         } else {
-            if (!xarSecurity::check('ViewHitcountItems', 1, 'Item', "$modname:$itemtype:All")) {
+            if (!$this->sec()->check('ViewHitcountItems', 1, 'Item', "$modname:$itemtype:All")) {
                 return;
             }
         }

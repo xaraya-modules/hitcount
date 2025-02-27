@@ -94,7 +94,7 @@ class DeleteMethod extends MethodClass
             // TODO: re-evaluate this for hook calls !!
             // Security check - important to do this as early on as possible to
             // avoid potential security holes or just too much wasted processing
-            if (!xarSecurity::check('DeleteHitcountItem', 1, 'Item', "$modname:$itemtype:$itemid")) {
+            if (!$this->sec()->check('DeleteHitcountItem', 1, 'Item', "$modname:$itemtype:$itemid")) {
                 return;
             }
 
