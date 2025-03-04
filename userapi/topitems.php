@@ -90,10 +90,9 @@ class TopitemsMethod extends MethodClass
         }
 
         $topitems = [];
-        while (!$result->EOF) {
+        while ($result->next()) {
             [$id, $hits] = $result->fields;
             $topitems[] = ['itemid' => $id, 'hits' => $hits];
-            $result->MoveNext();
         }
         $result->close();
 

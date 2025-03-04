@@ -104,7 +104,7 @@ class GetMethod extends MethodClass
                   AND itemid = ?";
         $bindvars = [(int) $modid, (int) $itemtype, (int) $objectid];
         $result = $dbconn->Execute($query, $bindvars);
-        if (!$result || $result->EOF) {
+        if (!$result || !$result->first()) {
             return;
         }
 
