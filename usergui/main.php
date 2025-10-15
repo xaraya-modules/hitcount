@@ -15,12 +15,6 @@ namespace Xaraya\Modules\Hitcount\UserGui;
 use Xaraya\Modules\Hitcount\UserGui;
 use Xaraya\Modules\Hitcount\UserApi;
 use Xaraya\Modules\MethodClass;
-use xarSecurity;
-use xarMod;
-use xarModVars;
-use xarController;
-use xarTpl;
-use xarVar;
 use sys;
 use Exception;
 

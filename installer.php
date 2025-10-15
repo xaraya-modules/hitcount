@@ -14,8 +14,6 @@
 namespace Xaraya\Modules\Hitcount;
 
 use Xaraya\Modules\InstallerClass;
-use xarModVars;
-use xarDB;
 use xarTableDDL;
 use xarHooks;
 use xarVar;
@@ -23,7 +21,6 @@ use xarPrivileges;
 use xarMasks;
 use xarMod;
 use sys;
-use Exception;
 
 sys::import('xaraya.modules.installer');
 

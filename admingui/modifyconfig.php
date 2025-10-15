@@ -14,15 +14,7 @@ namespace Xaraya\Modules\Hitcount\AdminGui;
 
 use Xaraya\Modules\Hitcount\AdminGui;
 use Xaraya\Modules\MethodClass;
-use xarSecurity;
-use xarVar;
-use xarMod;
-use xarSec;
-use xarModVars;
-use xarController;
-use xarTpl;
 use sys;
-use BadParameterException;
 
 sys::import('xaraya.modules.method');
 

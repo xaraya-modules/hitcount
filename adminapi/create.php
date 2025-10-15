@@ -14,9 +14,6 @@ namespace Xaraya\Modules\Hitcount\AdminApi;
 
 use Xaraya\Modules\Hitcount\AdminApi;
 use Xaraya\Modules\MethodClass;
-use xarMod;
-use xarSecurity;
-use xarDB;
 use xarModHooks;
 use sys;
 use Exception;

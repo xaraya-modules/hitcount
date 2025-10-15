@@ -15,11 +15,6 @@ namespace Xaraya\Modules\Hitcount\AdminGui;
 use Xaraya\Modules\Hitcount\AdminGui;
 use Xaraya\Modules\Hitcount\UserApi;
 use Xaraya\Modules\MethodClass;
-use xarSecurity;
-use xarVar;
-use xarMod;
-use xarController;
-use xarModVars;
 use sys;
 use Exception;
 

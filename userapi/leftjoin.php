@@ -14,11 +14,7 @@ namespace Xaraya\Modules\Hitcount\UserApi;
 
 use Xaraya\Modules\Hitcount\UserApi;
 use Xaraya\Modules\MethodClass;
-use xarMod;
-use xarSecurity;
-use xarDB;
 use sys;
-use BadParameterException;
 
 sys::import('xaraya.modules.method');
 

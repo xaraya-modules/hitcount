@@ -16,12 +16,7 @@ use Xaraya\Modules\Hitcount\UserGui;
 use Xaraya\Modules\Hitcount\UserApi;
 use Xaraya\Modules\Hitcount\AdminApi;
 use Xaraya\Modules\MethodClass;
-use xarVar;
-use xarMod;
-use xarSecurity;
-use xarModVars;
 use sys;
-use BadParameterException;
 
 sys::import('xaraya.modules.method');
 
