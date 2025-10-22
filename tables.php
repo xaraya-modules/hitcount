@@ -2,8 +2,6 @@
 
 namespace Xaraya\Modules\Hitcount;
 
-use xarDB;
-
 class Tables
 {
     /**
@@ -17,11 +15,10 @@ class Tables
      * @link http://xaraya.com/index.php/release/177.html
      * @author Hitcount Module Development Team
      */
-    public function __invoke(?string $prefix = null)
+    public function __invoke(string $prefix = 'xar')
     {
         // Initialise table array
         $xartable = [];
-        $prefix ??= xarDB::getPrefix();
 
         // Name for hitcount database entities
         $hitcount = $prefix . '_hitcount';
