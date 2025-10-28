@@ -14,7 +14,7 @@ namespace Xaraya\Modules\Hitcount;
 use Xaraya\Modules\ModuleClass;
 
 /**
- * Get hitcount module classes via xarMod::getModule()
+ * Get hitcount module classes via xar::mod()->getModule()
  */
 class Module extends ModuleClass
 {

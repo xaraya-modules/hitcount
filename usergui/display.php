@@ -30,7 +30,7 @@ class DisplayMethod extends MethodClass
 
     /**
      * add a hit for a specific item, and display the hitcount (= display hook)
-     * (use $this->var()->setCached('Hooks.hitcount','save', 1) to tell hitcount *not*
+     * (use $this->mem()->set('Hooks.hitcount','save', 1) to tell hitcount *not*
      * to display the hit count, but to save it in 'Hooks.hitcount', 'value')
      * @param array<mixed> $args
      * @var mixed $objectid ID of the item this hitcount is for
@@ -69,7 +69,7 @@ class DisplayMethod extends MethodClass
                 $args['itemtype'] = 0;
             }
         }
-        if ($this->var()->isCached('Hooks.hitcount', 'nocount') ||
+        if ($this->mem()->has('Hooks.hitcount', 'nocount') ||
             ($this->sec()->checkAccess('AdminHitcount', 0) && $this->mod()->getVar('countadmin') == false)) {
             $hitcount = $userapi->get($args);
         } else {
@@ -79,11 +79,11 @@ class DisplayMethod extends MethodClass
         // @fixme: this function should return output to a template, not directly as a string!
         if (isset($hitcount)) {
             // Display current hitcount or set the cached variable
-            if (!$this->var()->isCached('Hooks.hitcount', 'save') ||
-                $this->var()->getCached('Hooks.hitcount', 'save') == false) {
+            if (!$this->mem()->has('Hooks.hitcount', 'save') ||
+                $this->mem()->get('Hooks.hitcount', 'save') == false) {
                 return '(' . $hitcount . ' ' . $this->ml('Reads') . ')';
             } else {
-                $this->var()->setCached('Hooks.hitcount', 'value', $hitcount);
+                $this->mem()->set('Hooks.hitcount', 'value', $hitcount);
             }
         }
 

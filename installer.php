@@ -158,7 +158,7 @@ class Installer extends InstallerClass
         //xarHooks::registerObserver('ItemtypeView', 'hitcount');
         xarHooks::registerObserver('ModuleRemove', 'hitcount');
         // when a module item is displayed, created or deleted
-        // (use xarVar::setCached('Hooks.hitcount','save', 1) to tell hitcount *not*
+        // (use xar::mem()->set('Hooks.hitcount','save', 1) to tell hitcount *not*
         // to display the hit count, but to save it in 'Hooks.hitcount', 'value')
         // <chris> - why is this necessary?
 
@@ -230,7 +230,7 @@ class Installer extends InstallerClass
                 $dbconn = $this->db()->getConn();
                 $xartable =& $this->db()->getTables();
 
-                $tmodInfo = xarMod::getBaseInfo('hitcount');
+                $tmodInfo = $this->mod()->getBaseInfo('hitcount');
                 $tmodId = $tmodInfo['systemid'];
 
                 $sql = "UPDATE $xartable[hooks]
@@ -271,6 +271,6 @@ class Installer extends InstallerClass
     {
         // nothing special to do here - rely on standard deinstall to take care of everything
         $module = 'hitcount';
-        return xarMod::apiFunc('modules', 'admin', 'standarddeinstall', ['module' => $module]);
+        return $this->mod()->apiFunc('modules', 'admin', 'standarddeinstall', ['module' => $module]);
     }
 }
