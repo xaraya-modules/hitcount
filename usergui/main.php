@@ -154,7 +154,7 @@ class MainMethod extends MethodClass
 
         $data['moduleList'] = $moduleList;
 
-        $this->tpl()->setPageTitle(\xarVarPrep::forDisplay($this->ml('Top Items')));
+        $this->tpl()->setPageTitle($this->prep()->text($this->ml('Top Items')));
 
         // Return output
         return $data;
