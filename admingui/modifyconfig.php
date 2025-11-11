@@ -11,12 +11,8 @@
 
 namespace Xaraya\Modules\Hitcount\AdminGui;
 
-
 use Xaraya\Modules\Hitcount\AdminGui;
 use Xaraya\Modules\MethodClass;
-use sys;
-
-sys::import('xaraya.modules.method');
 
 /**
  * hitcount admin modifyconfig function

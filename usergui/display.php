@@ -11,14 +11,10 @@
 
 namespace Xaraya\Modules\Hitcount\UserGui;
 
-
 use Xaraya\Modules\Hitcount\UserGui;
 use Xaraya\Modules\Hitcount\UserApi;
 use Xaraya\Modules\Hitcount\AdminApi;
 use Xaraya\Modules\MethodClass;
-use sys;
-
-sys::import('xaraya.modules.method');
 
 /**
  * hitcount user display function
@@ -54,23 +50,23 @@ class DisplayMethod extends MethodClass
         // When called via hooks, modname will be empty, but we get it from the
         // extrainfo or from the current module
         if (empty($args['modname']) || !is_string($args['modname'])) {
-            if (isset($extrainfo) && is_array($extrainfo) &&
-                isset($extrainfo['module']) && is_string($extrainfo['module'])) {
+            if (isset($extrainfo) && is_array($extrainfo)
+                && isset($extrainfo['module']) && is_string($extrainfo['module'])) {
                 $args['modname'] = $extrainfo['module'];
             } else {
                 $args['modname'] = $this->mod()->getName();
             }
         }
         if (!isset($args['itemtype']) || !is_numeric($args['itemtype'])) {
-            if (isset($extrainfo) && is_array($extrainfo) &&
-                 isset($extrainfo['itemtype']) && is_numeric($extrainfo['itemtype'])) {
+            if (isset($extrainfo) && is_array($extrainfo)
+                 && isset($extrainfo['itemtype']) && is_numeric($extrainfo['itemtype'])) {
                 $args['itemtype'] = $extrainfo['itemtype'];
             } else {
                 $args['itemtype'] = 0;
             }
         }
-        if ($this->mem()->has('Hooks.hitcount', 'nocount') ||
-            ($this->sec()->checkAccess('AdminHitcount', 0) && $this->mod()->getVar('countadmin') == false)) {
+        if ($this->mem()->has('Hooks.hitcount', 'nocount')
+            || ($this->sec()->checkAccess('AdminHitcount', 0) && $this->mod()->getVar('countadmin') == false)) {
             $hitcount = $userapi->get($args);
         } else {
             $hitcount = $adminapi->update($args);
@@ -79,8 +75,8 @@ class DisplayMethod extends MethodClass
         // @fixme: this function should return output to a template, not directly as a string!
         if (isset($hitcount)) {
             // Display current hitcount or set the cached variable
-            if (!$this->mem()->has('Hooks.hitcount', 'save') ||
-                $this->mem()->get('Hooks.hitcount', 'save') == false) {
+            if (!$this->mem()->has('Hooks.hitcount', 'save')
+                || $this->mem()->get('Hooks.hitcount', 'save') == false) {
                 return '(' . $hitcount . ' ' . $this->ml('Reads') . ')';
             } else {
                 $this->mem()->set('Hooks.hitcount', 'value', $hitcount);

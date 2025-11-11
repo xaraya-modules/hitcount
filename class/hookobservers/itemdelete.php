@@ -18,7 +18,6 @@
  *
  * This observer is responsible for logging the event to the system log
 **/
-sys::import('xaraya.structures.hooks.observer');
 class HitcountItemDeleteObserver extends HookObserver implements ixarHookObserver
 {
     public $module = 'hitcount';

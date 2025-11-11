@@ -11,14 +11,10 @@
 
 namespace Xaraya\Modules\Hitcount\AdminApi;
 
-
 use Xaraya\Modules\Hitcount\AdminApi;
 use Xaraya\Modules\Hitcount\UserApi;
 use Xaraya\Modules\MethodClass;
-use sys;
 use Exception;
-
-sys::import('xaraya.modules.method');
 
 /**
  * hitcount adminapi update function
@@ -61,8 +57,8 @@ class UpdateMethod extends MethodClass
         // When called via hooks, modname will be empty, but we get it from the
         // extrainfo or from the current module
         if (empty($modname) || !is_string($modname)) {
-            if (isset($extrainfo) && is_array($extrainfo) &&
-                isset($extrainfo['module']) && is_string($extrainfo['module'])) {
+            if (isset($extrainfo) && is_array($extrainfo)
+                && isset($extrainfo['module']) && is_string($extrainfo['module'])) {
                 $modname = $extrainfo['module'];
             } else {
                 $modname = $this->mod()->getName();
@@ -80,8 +76,8 @@ class UpdateMethod extends MethodClass
             throw new Exception($msg);
         }
         if (!isset($itemtype) || !is_numeric($itemtype)) {
-            if (isset($extrainfo) && is_array($extrainfo) &&
-                 isset($extrainfo['itemtype']) && is_numeric($extrainfo['itemtype'])) {
+            if (isset($extrainfo) && is_array($extrainfo)
+                 && isset($extrainfo['itemtype']) && is_numeric($extrainfo['itemtype'])) {
                 $itemtype = $extrainfo['itemtype'];
             } else {
                 $itemtype = 0;
@@ -100,14 +96,16 @@ class UpdateMethod extends MethodClass
         }
 
         // get current hit count
-        $oldhits = $userapi->get(['objectid' => $objectid,
+        $oldhits = $userapi->get(
+            ['objectid' => $objectid,
                 'itemtype' => $itemtype,
                 'modname' => $modname, ]
         );
 
         // create the item if necessary
         if (!isset($oldhits)) {
-            $hcid = $adminapi->create(['objectid' => $objectid,
+            $hcid = $adminapi->create(
+                ['objectid' => $objectid,
                     'itemtype' => $itemtype,
                     'modname' => $modname, ]
             );
@@ -129,8 +127,8 @@ class UpdateMethod extends MethodClass
             $hits = $oldhits + 1;
         }
         $query = "UPDATE $hitcounttable
-                  SET hits = $bhits, lasthit = " . time() .
-                  " WHERE module_id = ?
+                  SET hits = $bhits, lasthit = " . time()
+                  . " WHERE module_id = ?
                   AND itemtype = ?
                   AND itemid = ?";
         $bindvars = [(int) $modid, (int) $itemtype, (int) $objectid];

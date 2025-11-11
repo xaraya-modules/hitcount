@@ -12,10 +12,6 @@
 namespace Xaraya\Modules\Hitcount;
 
 use Xaraya\Modules\UserGuiClass;
-use sys;
-
-sys::import('xaraya.modules.usergui');
-sys::import('modules.hitcount.userapi');
 
 /**
  * Handle the hitcount user GUI

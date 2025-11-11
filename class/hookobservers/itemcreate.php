@@ -14,7 +14,6 @@
  * ItemCreate Hook Subject Observer
  *
 **/
-sys::import('xaraya.structures.hooks.observer');
 class HitcountItemCreateObserver extends HookObserver implements ixarHookObserver
 {
     public $module = 'hitcount';

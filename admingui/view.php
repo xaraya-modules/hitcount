@@ -11,14 +11,10 @@
 
 namespace Xaraya\Modules\Hitcount\AdminGui;
 
-
 use Xaraya\Modules\Hitcount\AdminGui;
 use Xaraya\Modules\Hitcount\UserApi;
 use Xaraya\Modules\MethodClass;
-use sys;
 use Exception;
-
-sys::import('xaraya.modules.method');
 
 /**
  * hitcount admin view function
@@ -151,7 +147,8 @@ class ViewMethod extends MethodClass
             $data['itemsperpage'] = $numstats;
 
             $data['modid'] = $modid;
-            $getitems = $userapi->getitems(['modid' => $modid,
+            $getitems = $userapi->getitems(
+                ['modid' => $modid,
                     'itemtype' => $itemtype,
                     'numitems' => $numstats,
                     'startnum' => $startnum,

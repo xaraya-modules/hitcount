@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Hitcount Module
  *
@@ -11,7 +12,6 @@
  * @author Marc Lutolf <mfl@netspan.ch>
  */
 
-sys::import('modules.base.xarproperties.integerbox');
 
 class HitCountProperty extends NumberBoxProperty
 {
@@ -81,8 +81,8 @@ class HitCountProperty extends NumberBoxProperty
                         'admin',
                         'update',
                         ['modname'  => $this->mod()->getName($this->objectref->moduleid),
-                                                            'itemtype' => $this->objectref->itemtype,
-                                                            'objectid' => $this->objectref->itemid, ]
+                            'itemtype' => $this->objectref->itemtype,
+                            'objectid' => $this->objectref->itemid, ]
                     );
                 } else {
                     // get the hitcount for this item
@@ -91,8 +91,8 @@ class HitCountProperty extends NumberBoxProperty
                         'user',
                         'get',
                         ['modname'  => $this->mod()->getName($this->objectref->moduleid),
-                                                            'itemtype' => $this->objectref->itemtype,
-                                                            'objectid' => $this->objectref->itemid, ]
+                            'itemtype' => $this->objectref->itemtype,
+                            'objectid' => $this->objectref->itemid, ]
                     );
                 }
                 if (empty($this->hitcache)) {
@@ -110,8 +110,8 @@ class HitCountProperty extends NumberBoxProperty
                     'user',
                     'getitems',
                     ['modid'    => $this->objectref->moduleid,
-                                                        'itemtype' => $this->objectref->itemtype,
-                                                        'itemids'  => $this->objectref->itemids, ]
+                        'itemtype' => $this->objectref->itemtype,
+                        'itemids'  => $this->objectref->itemids, ]
                 );
                 if (empty($this->hitcache)) {
                     $this->hitcache = [];
@@ -181,8 +181,8 @@ class HitCountProperty extends NumberBoxProperty
             'admin',
             'delete',
             ['modname'  => $this->mod()->getName($this->objectref->moduleid),
-                              'itemtype' => $this->objectref->itemtype,
-                              'objectid' => $itemid, ]
+                'itemtype' => $this->objectref->itemtype,
+                'objectid' => $itemid, ]
         );
         return true;
     }

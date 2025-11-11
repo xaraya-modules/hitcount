@@ -11,13 +11,9 @@
 
 namespace Xaraya\Modules\Hitcount\UserApi;
 
-
 use Xaraya\Modules\Hitcount\UserApi;
 use Xaraya\Modules\MethodClass;
-use sys;
 use BadParameterException;
-
-sys::import('xaraya.modules.method');
 
 /**
  * hitcount userapi getitems function

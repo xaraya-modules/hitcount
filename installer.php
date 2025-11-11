@@ -16,13 +16,8 @@ namespace Xaraya\Modules\Hitcount;
 use Xaraya\Modules\InstallerClass;
 use xarTableDDL;
 use xarHooks;
-use xarVar;
 use xarPrivileges;
 use xarMasks;
-use xarMod;
-use sys;
-
-sys::import('xaraya.modules.installer');
 
 /**
  * Handle module installer functions
@@ -69,7 +64,6 @@ class Installer extends InstallerClass
         $xartable = & $this->db()->getTables();
 
         //Load Table Maintenance API
-        sys::import('xaraya.tableddl');
 
         // Create tables
         $query = xarTableDDL::createTable(

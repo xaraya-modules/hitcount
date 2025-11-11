@@ -11,14 +11,10 @@
 
 namespace Xaraya\Modules\Hitcount\UserGui;
 
-
 use Xaraya\Modules\Hitcount\UserGui;
 use Xaraya\Modules\Hitcount\UserApi;
 use Xaraya\Modules\MethodClass;
-use sys;
 use Exception;
-
-sys::import('xaraya.modules.method');
 
 /**
  * hitcount user main function
@@ -89,7 +85,8 @@ class MainMethod extends MethodClass
                         $moditem['link'] = $this->ctl()->getModuleURL($modinfo['name'], 'user', 'view', ['itemtype' => $itemtype]);
                     }
                 }
-                $moditem['tophits'] = $userapi->topitems(['modname'  => $modinfo['name'],
+                $moditem['tophits'] = $userapi->topitems(
+                    ['modname'  => $modinfo['name'],
                         'itemtype' => $itemtype,
                         'numitems' => $numitems, ]
                 );

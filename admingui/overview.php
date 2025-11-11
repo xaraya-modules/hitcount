@@ -11,13 +11,9 @@
 
 namespace Xaraya\Modules\Hitcount\AdminGui;
 
-
 use Xaraya\Modules\Hitcount\AdminGui;
 use Xaraya\Modules\MethodClass;
 use xarTpl;
-use sys;
-
-sys::import('xaraya.modules.method');
 
 /**
  * hitcount admin overview function

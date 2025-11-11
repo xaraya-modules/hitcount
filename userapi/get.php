@@ -11,13 +11,9 @@
 
 namespace Xaraya\Modules\Hitcount\UserApi;
 
-
 use Xaraya\Modules\Hitcount\UserApi;
 use Xaraya\Modules\MethodClass;
-use sys;
 use Exception;
-
-sys::import('xaraya.modules.method');
 
 /**
  * hitcount userapi get function
@@ -55,8 +51,8 @@ class GetMethod extends MethodClass
         // When called via hooks, modname will be empty, but we get it from the
         // extrainfo or from the current module
         if (empty($modname)) {
-            if (isset($extrainfo) && is_array($extrainfo) &&
-                isset($extrainfo['module']) && is_string($extrainfo['module'])) {
+            if (isset($extrainfo) && is_array($extrainfo)
+                && isset($extrainfo['module']) && is_string($extrainfo['module'])) {
                 $modname = $extrainfo['module'];
             } else {
                 $modname = $this->mod()->getName();
@@ -74,8 +70,8 @@ class GetMethod extends MethodClass
             throw new Exception($msg);
         }
         if (!isset($itemtype) || !is_numeric($itemtype)) {
-            if (isset($extrainfo) && is_array($extrainfo) &&
-                 isset($extrainfo['itemtype']) && is_numeric($extrainfo['itemtype'])) {
+            if (isset($extrainfo) && is_array($extrainfo)
+                 && isset($extrainfo['itemtype']) && is_numeric($extrainfo['itemtype'])) {
                 $itemtype = $extrainfo['itemtype'];
             } else {
                 $itemtype = 0;

@@ -12,9 +12,6 @@
 namespace Xaraya\Modules\Hitcount;
 
 use Xaraya\Modules\AdminApiClass;
-use sys;
-
-sys::import('xaraya.modules.adminapi');
 
 /**
  * Handle the hitcount admin API

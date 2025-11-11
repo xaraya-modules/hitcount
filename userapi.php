@@ -12,9 +12,6 @@
 namespace Xaraya\Modules\Hitcount;
 
 use Xaraya\Modules\UserApiClass;
-use sys;
-
-sys::import('xaraya.modules.userapi');
 
 /**
  * Handle the hitcount user API

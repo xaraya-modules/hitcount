@@ -11,14 +11,10 @@
 
 namespace Xaraya\Modules\Hitcount\AdminApi;
 
-
 use Xaraya\Modules\Hitcount\AdminApi;
 use Xaraya\Modules\MethodClass;
 use xarModHooks;
-use sys;
 use Exception;
-
-sys::import('xaraya.modules.method');
 
 /**
  * hitcount adminapi create function
@@ -57,8 +53,8 @@ class CreateMethod extends MethodClass
         // When called via hooks, modname will be empty, but we get it from the
         // extrainfo or from the current module
         if (empty($modname) || !is_string($modname)) {
-            if (isset($extrainfo) && is_array($extrainfo) &&
-                isset($extrainfo['module']) && is_string($extrainfo['module'])) {
+            if (isset($extrainfo) && is_array($extrainfo)
+                && isset($extrainfo['module']) && is_string($extrainfo['module'])) {
                 $modname = $extrainfo['module'];
             } else {
                 $modname = $this->mod()->getName();

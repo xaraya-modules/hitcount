@@ -11,14 +11,10 @@
 
 namespace Xaraya\Modules\Hitcount\AdminGui;
 
-
 use Xaraya\Modules\Hitcount\AdminGui;
 use Xaraya\Modules\Hitcount\AdminApi;
 use Xaraya\Modules\MethodClass;
-use sys;
 use Exception;
-
-sys::import('xaraya.modules.method');
 
 /**
  * hitcount admin delete function
@@ -87,7 +83,8 @@ class DeleteMethod extends MethodClass
         if (!$this->sec()->confirmAuthKey()) {
             return $this->ctl()->badRequest('bad_author');
         }
-        if (!$adminapi->delete(['modid' => $modid,
+        if (!$adminapi->delete(
+            ['modid' => $modid,
                 'itemtype' => $itemtype,
                 'itemid' => $itemid,
                 'confirm' => $confirm, ]
