@@ -78,7 +78,7 @@ class HitCountProperty extends NumberBoxProperty
                     // update the hitcount for this item
                     $this->hitcache = $this->mod()->apiMethod(
                         'hitcount',
-                        'admin',
+                        'adminapi',
                         'update',
                         ['modname'  => $this->mod()->getName($this->objectref->moduleid),
                             'itemtype' => $this->objectref->itemtype,
@@ -88,7 +88,7 @@ class HitCountProperty extends NumberBoxProperty
                     // get the hitcount for this item
                     $this->hitcache = $this->mod()->apiMethod(
                         'hitcount',
-                        'user',
+                        'userapi',
                         'get',
                         ['modname'  => $this->mod()->getName($this->objectref->moduleid),
                             'itemtype' => $this->objectref->itemtype,
@@ -107,7 +107,7 @@ class HitCountProperty extends NumberBoxProperty
                 // get the hitcount for all the items in the objectref
                 $this->hitcache = $this->mod()->apiMethod(
                     'hitcount',
-                    'user',
+                    'userapi',
                     'getitems',
                     ['modid'    => $this->objectref->moduleid,
                         'itemtype' => $this->objectref->itemtype,
@@ -178,7 +178,7 @@ class HitCountProperty extends NumberBoxProperty
         // delete hitcount entry
         $this->mod()->apiMethod(
             'hitcount',
-            'admin',
+            'adminapi',
             'delete',
             ['modname'  => $this->mod()->getName($this->objectref->moduleid),
                 'itemtype' => $this->objectref->itemtype,
