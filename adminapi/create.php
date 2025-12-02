@@ -13,7 +13,6 @@ namespace Xaraya\Modules\Hitcount\AdminApi;
 
 use Xaraya\Modules\Hitcount\AdminApi;
 use Xaraya\Modules\MethodClass;
-use xarModHooks;
 use Exception;
 
 /**
@@ -118,7 +117,7 @@ class CreateMethod extends MethodClass
         $hcid = $dbconn->PO_Insert_ID($hitcounttable, 'id');
 
         // hmmm, I think we'll skip calling more hooks here... :-)
-        //xarModHooks::call('item', 'create', $hcid, 'id');
+        //$this->mod()->callHooks('item', 'create', $hcid, 'id');
 
         // Return the extra info with the id of the newly created item
         // (not that this will be of any used when called via hooks, but

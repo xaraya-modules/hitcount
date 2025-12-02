@@ -13,7 +13,6 @@ namespace Xaraya\Modules\Hitcount\AdminGui;
 
 use Xaraya\Modules\Hitcount\AdminGui;
 use Xaraya\Modules\MethodClass;
-use xarTpl;
 
 /**
  * hitcount admin overview function
@@ -28,7 +27,7 @@ class OverviewMethod extends MethodClass
      * This function shows the overview template, currently admin-main.xd.
      * The template contains overview and help texts
      * @author the Hitcount module development team
-     * @return array|string|void xarTpl::module with $data containing template data
+     * @return array|string|void $this->tpl()->module with $data containing template data
      * @since 4 March 2006
      * @see AdminGui::overview()
      */
