@@ -4,7 +4,7 @@
     <xar:template file="admin-mod-head"/>
     <div class="xar-mod-body">
         <h2>Delete Hit Counts</h2>
-        <form name="post" id="post" action="#xarController::URL('hitcount', 'admin', 'delete')#" method="post" enctype="application/x-www-form-urlencoded">
+        <form name="post" id="post" action="#$xar->ctl()->URL('hitcount', 'admin', 'delete')#" method="post" enctype="application/x-www-form-urlencoded">
         <fieldset>
             <legend>
                 Confirm Hitcount Deletion
@@ -24,7 +24,7 @@
            <input type="hidden" name="modid" id="modid" value="#$modid#"/>
            <input type="hidden" name="itemtype" id="itemtype" value="#$itemtype#"/>
             <input type="hidden" name="itemid" id="itemid" value="#$itemid#"/>
-            <input type="submit" name="confirm" id="confirm" value="#xarML('Confirm')#"/>
+            <input type="submit" name="confirm" id="confirm" value="#$xar->ml('Confirm')#"/>
         </div>
         </form>
     </div>

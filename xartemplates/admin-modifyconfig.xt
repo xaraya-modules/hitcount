@@ -5,7 +5,7 @@
     <div class="xar-mod-body">
         <h2>Modify Configuration</h2>
         <xar:if condition="$tab eq 'general'">
-            <form name="post" id="post" action="#xarController::URL('hitcount','admin','modifyconfig')#" method="post" enctype="application/x-www-form-urlencoded">
+            <form name="post" id="post" action="#$xar->ctl()->URL('hitcount','admin','modifyconfig')#" method="post" enctype="application/x-www-form-urlencoded">
                 <fieldset>
                     <legend>
                         General Options
@@ -21,7 +21,7 @@
                             Count Administrator Hits
                             :
                         </label>
-                        <xar:if condition="xarModVars::get('hitcount', 'countadmin')">
+                        <xar:if condition="$xar->mod('hitcount')->getVar('countadmin')">
                             <input type="checkbox" name="countadmin" id="countadmin" value="1" checked="checked"/>
                         <xar:else />
                             <input type="checkbox" name="countadmin" id="countadmin" value="1"/>
