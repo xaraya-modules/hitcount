@@ -54,7 +54,7 @@ class DisplayMethod extends MethodClass
                 && isset($extrainfo['module']) && is_string($extrainfo['module'])) {
                 $args['modname'] = $extrainfo['module'];
             } else {
-                $args['modname'] = $this->mod()->getName();
+                $args['modname'] = $this->req()->getModule();
             }
         }
         if (!isset($args['itemtype']) || !is_numeric($args['itemtype'])) {

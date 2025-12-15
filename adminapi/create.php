@@ -56,7 +56,7 @@ class CreateMethod extends MethodClass
                 && isset($extrainfo['module']) && is_string($extrainfo['module'])) {
                 $modname = $extrainfo['module'];
             } else {
-                $modname = $this->mod()->getName();
+                $modname = $this->req()->getModule();
             }
         }
         $modid = $this->mod()->getRegID($modname);
